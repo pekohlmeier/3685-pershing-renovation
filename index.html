@@ -1,0 +1,1791 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>3685 Pershing Ave · Renovation Journal</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&family=IM+Fell+English+SC&display=swap');
+
+/* ── BASE ───────────────────────────────────────────── */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Source Serif 4', 'Georgia', serif;
+  color: #2A1F15;
+  background: #F5F0E8;
+  /* linen / paper noise */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(196,168,130,0.06) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(196,98,58,0.04) 0, transparent 40%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.36  0 0 0 0 0.28  0 0 0 0 0.18  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  line-height: 1.55;
+  font-size: 16px;
+  min-height: 100vh;
+}
+
+#root { max-width: 1240px; margin: 0 auto; padding: 36px 28px 80px; }
+
+.num { font-family: 'Inter', sans-serif; font-feature-settings: "tnum" 1, "lnum" 1; }
+
+/* ── MASTHEAD ───────────────────────────────────────── */
+.masthead { padding-bottom: 18px; border-bottom: 1px solid #C4A882; margin-bottom: 26px; }
+.masthead-top {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.eyebrow {
+  font-family: 'IM Fell English SC', 'Playfair Display', serif;
+  font-size: 12px; letter-spacing: 4px; color: #8B7355;
+  margin-bottom: 4px;
+}
+.address {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 0.96;
+  margin: 0;
+  color: #2D4A2D;
+  letter-spacing: -1px;
+}
+.subaddress {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: #5C3D2E;
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+.masthead-right {
+  display: flex; align-items: flex-end; gap: 18px;
+}
+.date-stamp {
+  border: 1px dashed #8B7355;
+  padding: 8px 14px;
+  background: rgba(237,232,220,0.6);
+  text-align: right;
+}
+.date-label {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px; letter-spacing: 3px; color: #8B7355;
+}
+.date-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; color: #2D4A2D; font-weight: 600;
+}
+.print-seal {
+  background: none; border: none; cursor: pointer; padding: 0;
+  filter: drop-shadow(2px 3px 1px rgba(92,61,46,0.25));
+  transition: transform 0.15s;
+}
+.print-seal:hover { transform: rotate(-6deg) scale(1.05); }
+
+.ornament-row { display: flex; justify-content: center; margin: 18px 0 14px; }
+
+.pulse-line {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px; color: #2A1F15;
+  justify-content: center;
+}
+.pulse-line b { font-weight: 700; color: #2D4A2D; font-size: 16px; }
+.dot-sep { color: #8B7355; padding: 0 2px; }
+
+/* ── ALERT NOTICE ───────────────────────────────────── */
+.alert-notice {
+  position: relative;
+  display: flex; align-items: center; gap: 18px;
+  background: linear-gradient(180deg, #F2DAA8, #EAC988);
+  border: 1.5px solid #8B5A1F;
+  border-left: 8px solid #8B2020;
+  padding: 16px 22px 16px 18px;
+  margin-bottom: 32px;
+  font-family: 'Source Serif 4', serif;
+  box-shadow: 2px 3px 0 rgba(92,61,46,0.18);
+}
+.alert-notice::before {
+  content: ""; position: absolute; inset: 4px;
+  border: 1px dashed rgba(139,32,32,0.35);
+  pointer-events: none;
+}
+.notice-stamp { flex: 0 0 auto; }
+.notice-body { flex: 1; }
+.notice-label {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 11px; letter-spacing: 4px; color: #8B2020;
+  margin-bottom: 4px;
+}
+.notice-text { color: #3A1010; font-size: 15px; line-height: 1.5; }
+.phone-num {
+  font-family: 'Inter', sans-serif; font-weight: 600;
+  background: #8B2020; color: #F5F0E8; padding: 1px 6px;
+  letter-spacing: 0.5px;
+}
+.telegram-stripe {
+  position: absolute; left: 0; right: 0; bottom: -6px; height: 6px;
+  background: repeating-linear-gradient(45deg, #8B2020 0 8px, #F5F0E8 8px 16px);
+  opacity: 0.5;
+}
+
+/* ── SECTION CHROME ─────────────────────────────────── */
+.section-head {
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 28px; color: #2D4A2D;
+  margin: 0; letter-spacing: -0.3px;
+}
+.section-sub {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; color: #5C3D2E; font-size: 15px;
+}
+
+/* ── CORKBOARD ─────────────────────────────────────── */
+.corkboard { margin-bottom: 36px; }
+.board-surface {
+  background:
+    radial-gradient(circle at 30% 20%, #B88958 0, #9C6D3F 60%, #7A4F26 100%);
+  background-blend-mode: multiply;
+  border: 6px solid #3A2415;
+  border-radius: 4px;
+  padding: 36px 24px 28px;
+  position: relative;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.3), 2px 4px 0 rgba(0,0,0,0.15);
+}
+.board-surface::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='c'><feTurbulence baseFrequency='0.7' numOctaves='3'/><feColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.18  0 0 0 0 0.08  0 0 0 0.25 0'/></filter><rect width='100%' height='100%' filter='url(%23c)'/></svg>");
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+}
+.board-notes {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  position: relative; z-index: 1;
+}
+.pinned-note {
+  background: #F4E9CC;
+  padding: 18px 16px 14px;
+  position: relative;
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.05) inset;
+  font-family: 'Source Serif 4', serif;
+}
+.pin {
+  position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 14px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #E55B3A, #8B2020 70%);
+  box-shadow: 1px 2px 2px rgba(0,0,0,0.4);
+}
+.pin-clip { display: none; }
+.note-title {
+  font-family: 'Caveat', cursive;
+  font-size: 24px; font-weight: 700;
+  margin: 4px 0 8px;
+  color: #5C3D2E;
+  line-height: 1;
+}
+.note-body { font-size: 14px; color: #3A2818; margin: 0 0 10px; }
+.note-meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1px dashed #A88859;
+  padding-top: 6px;
+  font-size: 12px;
+}
+.note-cost { font-family: 'Inter', sans-serif; font-weight: 600; color: #2D4A2D; }
+.note-area { font-family: 'IM Fell English SC', serif; letter-spacing: 2px; color: #8B7355; font-size: 10px; }
+.note-warn {
+  margin-top: 6px;
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+  color: #8B2020;
+  background: rgba(139,32,32,0.1);
+  padding: 3px 6px;
+}
+
+/* ── LEDGER ─────────────────────────────────────────── */
+.ledger {
+  background: #EDE8DC;
+  border: 1px solid #C4A882;
+  padding: 24px 28px;
+  margin-bottom: 36px;
+  position: relative;
+  box-shadow: 0 2px 0 rgba(196,168,130,0.4);
+}
+.ledger::before, .ledger::after {
+  content: ""; position: absolute; left: 50px; right: 50px;
+  height: 1px; background: rgba(196,168,130,0.5);
+}
+.ledger::before { top: 4px; }
+.ledger::after { bottom: 4px; }
+.ledger-totals {
+  display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  border-top: 2px double #8B7355;
+  border-bottom: 2px double #8B7355;
+  padding: 18px 0;
+  margin-bottom: 18px;
+}
+.ledger-col { text-align: center; }
+.ledger-label {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 11px; letter-spacing: 3px; color: #8B7355;
+  margin-bottom: 4px;
+}
+.ledger-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px; font-weight: 700; color: #2D4A2D;
+  line-height: 1;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+.ledger-num.terra { color: #C4623A; }
+.ledger-sub {
+  font-family: 'Source Serif 4', serif; font-style: italic;
+  font-size: 12px; color: #8B7355; margin-top: 4px;
+}
+.ledger-divider {
+  width: 1px; height: 50px; background: #C4A882; align-self: center;
+}
+
+.ledger-categories { display: flex; flex-direction: column; gap: 10px; }
+.cat-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 180px;
+  gap: 18px; align-items: center;
+  padding: 6px 0;
+}
+.cat-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; color: #2A1F15; font-weight: 500;
+}
+.cat-warn { color: #8B2020; font-weight: 700; }
+.cat-hold {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px; letter-spacing: 2px; color: #8B2020;
+}
+.cat-fig {
+  font-family: 'Inter', sans-serif; font-size: 13px;
+  color: #2A1F15; text-align: right;
+}
+.cat-fig .num { font-weight: 600; color: #2D4A2D; }
+.cat-of { color: #8B7355; }
+.cat-row.on-hold-row { opacity: 0.55; }
+
+/* ── HOUSE SECTION ──────────────────────────────────── */
+.house-section { margin-bottom: 32px; }
+.house-frame {
+  background: #EDE8DC;
+  border: 1px solid #C4A882;
+  padding: 20px;
+  box-shadow: inset 0 0 0 1px rgba(244,233,204,0.8), 2px 3px 0 rgba(196,168,130,0.4);
+}
+.zone-hot {
+  fill: rgba(212,168,83,0.001);
+  transition: fill 0.15s ease;
+}
+.zone-hot:hover {
+  fill: rgba(212,168,83,0.22);
+}
+.zone-hot.zone-active {
+  fill: rgba(212,168,83,0.32);
+  stroke: #D4A853;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+
+.zone-tiles {
+  display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap;
+}
+.zone-tile {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px; font-weight: 600;
+  background: #EDE8DC;
+  border: 1.5px solid #8B7355;
+  padding: 10px 16px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  color: #2A1F15;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all 0.15s;
+}
+.zone-tile:hover { background: #F4E9CC; }
+.zone-tile.active {
+  background: #2D4A2D; color: #F5F0E8; border-color: #1F3320;
+  box-shadow: 2px 2px 0 #D4A853;
+}
+.zone-tile.clear { border-style: dashed; }
+.tile-mark {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #C4623A; display: inline-block;
+}
+.zone-tile.active .tile-mark { background: #D4A853; }
+
+.filter-readout {
+  margin-top: 16px;
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; color: #5C3D2E;
+  text-align: center;
+}
+.filter-readout i { color: #2D4A2D; font-weight: 600; }
+
+/* ── FILTER + SORT BAR ──────────────────────────────── */
+.filter-bar {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 18px 22px;
+  margin-bottom: 28px;
+  border-top: 1px solid #C4A882;
+  border-bottom: 1px solid #C4A882;
+  background: rgba(237,232,220,0.4);
+}
+.filter-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.filter-label {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 12px; letter-spacing: 3px; color: #5C3D2E;
+  min-width: 60px;
+}
+.filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.stamp-tab {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px; font-weight: 600;
+  background: #F5F0E8;
+  border: 1.5px dashed #8B7355;
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  color: #5C3D2E;
+  text-transform: uppercase;
+  transition: all 0.15s;
+}
+.stamp-tab:hover { background: #F4E9CC; }
+.stamp-tab.active {
+  background: #C4623A; color: #F5F0E8; border-color: #8B3A1F;
+  border-style: solid;
+  transform: rotate(-1deg);
+  box-shadow: 2px 2px 0 rgba(92,61,46,0.3);
+}
+.stamp-tab.small { font-size: 11px; padding: 5px 12px; }
+.sort-tabs .stamp-tab.active { background: #2D4A2D; border-color: #1F3320; transform: rotate(1deg); }
+
+/* ── PROJECT GRID ───────────────────────────────────── */
+.phase-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 18px;
+}
+.phase-rule {
+  flex: 1; height: 0;
+  border-top: 1px solid #8B7355;
+  border-bottom: 1px solid #8B7355;
+  padding-top: 2px;
+}
+.phase-text {
+  white-space: nowrap;
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+}
+.phase-label {
+  font-size: 22px; font-weight: 700; color: #2D4A2D;
+  font-style: italic;
+}
+.phase-roman {
+  font-family: 'IM Fell English SC', serif;
+  letter-spacing: 3px; color: #8B7355; font-size: 14px;
+}
+.phase-sub { font-style: italic; color: #5C3D2E; font-size: 14px; }
+.phase-count {
+  font-family: 'Inter', sans-serif; font-size: 11px;
+  color: #8B7355; letter-spacing: 1px;
+}
+
+.project-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
+}
+
+.project-card {
+  position: relative;
+  background: #EDE8DC;
+  border: 1px solid #C4A882;
+  padding: 18px 20px 16px;
+  cursor: pointer;
+  box-shadow: 2px 3px 0 rgba(196,168,130,0.4), 0 0 0 1px rgba(244,233,204,0.6) inset;
+  transition: transform 0.15s, box-shadow 0.15s;
+  overflow: hidden;
+}
+.project-card:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: 4px 6px 0 rgba(196,168,130,0.4), 0 0 0 1px rgba(244,233,204,0.6) inset;
+}
+.project-card.on-hold {
+  filter: saturate(0.45);
+  background: #E5DECD;
+}
+.project-card.completed {
+  background: linear-gradient(180deg, #E5EBDC, #EDE8DC);
+  border-color: #9CAA88;
+}
+.project-card.action {
+  border-color: #D4A853;
+  box-shadow: 0 0 0 2px #D4A853, 2px 3px 0 rgba(196,168,130,0.4);
+  animation: pulseAction 2.5s ease-in-out infinite;
+}
+@keyframes pulseAction {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(212,168,83,0.6), 2px 3px 0 rgba(196,168,130,0.4); }
+  50% { box-shadow: 0 0 0 4px rgba(212,168,83,0.9), 2px 3px 0 rgba(196,168,130,0.4); }
+}
+
+.hold-stamp {
+  position: absolute; top: 38%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  font-family: 'Playfair Display', serif;
+  font-weight: 800; font-size: 42px;
+  letter-spacing: 8px;
+  color: #8B2020;
+  border: 4px solid #8B2020;
+  padding: 4px 16px;
+  background: rgba(245,240,232,0.4);
+  pointer-events: none;
+  opacity: 0.78;
+  z-index: 5;
+}
+
+.card-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 10px; margin-bottom: 10px;
+}
+.area-tag {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px; letter-spacing: 2.5px;
+  background: #F5F0E8;
+  border: 1px solid #8B7355;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #5C3D2E;
+  white-space: nowrap;
+}
+
+.project-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700; color: #2A1F15;
+  margin: 4px 0 6px;
+  line-height: 1.15;
+  letter-spacing: -0.2px;
+}
+
+.contractor-line {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-family: 'Source Serif 4', serif;
+  font-size: 13px; color: #5C3D2E;
+  margin-bottom: 12px;
+}
+.contractor-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #F5F0E8;
+  border: 1px solid #C4A882;
+  padding: 3px 10px;
+  font-style: italic;
+}
+.contractor-chip .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #4A6274;
+}
+.diy-tag {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px; letter-spacing: 3px;
+  background: #2D4A2D; color: #F5F0E8;
+  padding: 3px 10px;
+}
+.phone { font-family: 'Inter', sans-serif; font-size: 11px; }
+
+.timeline-row {
+  display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #C4A882;
+}
+.timeline-label {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px; letter-spacing: 2.5px; color: #8B7355;
+}
+.timeline-value {
+  font-family: 'Source Serif 4', serif;
+  font-size: 13px; color: #2A1F15;
+}
+
+.money-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-bottom: 10px;
+}
+.money-label {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px; letter-spacing: 2.5px; color: #8B7355;
+}
+.money-value {
+  font-family: 'Inter', sans-serif; font-weight: 600;
+  font-size: 18px; color: #2D4A2D;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+.money-note {
+  font-family: 'Source Serif 4', serif; font-style: italic;
+  font-size: 11px; color: #8B7355;
+}
+
+.notes-toggle {
+  margin-top: 12px;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  font-size: 13px; color: #5C3D2E; font-style: italic;
+  padding: 0;
+}
+.notes-toggle:hover { color: #C4623A; }
+
+.notes-body {
+  margin-top: 10px;
+  padding: 12px 14px;
+  background: rgba(245,240,232,0.7);
+  border-left: 2px solid #C4623A;
+  font-family: 'Source Serif 4', serif;
+  font-size: 13.5px;
+  color: #3A2818;
+}
+.notes-body p { margin: 0 0 12px; }
+
+.polaroid {
+  margin-top: 14px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.polaroid-frame {
+  width: 80%; aspect-ratio: 4 / 3;
+  background: #F5F0E8;
+  border: 1.5px dashed #8B7355;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px;
+  color: #8B7355;
+  padding: 14px;
+  box-shadow: 0 0 0 6px #EDE8DC, 0 0 0 7px #C4A882;
+}
+.polaroid-icon { font-size: 24px; opacity: 0.5; }
+.polaroid-text {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 11px; letter-spacing: 3px;
+}
+.polaroid-caption {
+  font-family: 'Caveat', cursive;
+  font-size: 15px; color: #5C3D2E;
+  margin-top: 8px;
+}
+
+.empty-state {
+  text-align: center; padding: 40px;
+  font-family: 'Playfair Display', serif;
+  color: #5C3D2E;
+}
+.empty-state button {
+  margin-top: 12px;
+  font-family: 'Playfair Display', serif;
+  background: #2D4A2D; color: #F5F0E8;
+  border: none; padding: 8px 16px; cursor: pointer;
+  letter-spacing: 1px;
+}
+
+/* ── ROLODEX ────────────────────────────────────────── */
+.rolodex-section { margin-top: 40px; }
+.rolodex-toggle {
+  width: 100%;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 600;
+  background: #5C3D2E; color: #F5F0E8;
+  border: none; padding: 14px 24px;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  letter-spacing: 1.5px;
+  border-radius: 2px;
+  box-shadow: 2px 3px 0 rgba(92,61,46,0.4);
+}
+.rolodex-toggle:hover { background: #4A2F1C; }
+.caret { font-size: 14px; }
+
+.rolodex {
+  margin-top: 20px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+.calling-card {
+  position: relative;
+  background: #F4E9CC;
+  border: 1px solid #C4A882;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 2px 3px 0 rgba(196,168,130,0.5);
+  font-family: 'Source Serif 4', serif;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.calling-card.alert {
+  background: #F2DAA8;
+  border-color: #8B2020;
+  border-width: 1.5px;
+}
+.card-corner {
+  position: absolute; width: 14px; height: 14px;
+  border: 1.5px solid #8B7355;
+}
+.card-corner.tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.card-corner.tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+.card-corner.bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+.card-corner.br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+.card-eyebrow {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px; letter-spacing: 3px; color: #8B7355;
+  margin-top: 4px;
+}
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700; color: #2A1F15;
+  margin-top: 4px;
+  line-height: 1.1;
+}
+.card-spec {
+  font-style: italic; font-size: 13px; color: #5C3D2E;
+  margin-bottom: 6px;
+}
+.card-foot {
+  margin-top: 4px; width: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.card-paid { display: flex; align-items: baseline; gap: 8px; }
+.card-paid-label {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 9px; letter-spacing: 2px; color: #8B7355;
+}
+.card-paid-val {
+  font-size: 18px; font-weight: 600; color: #2D4A2D;
+}
+.card-note {
+  font-size: 12px; color: #3A2818; font-style: italic;
+  border-top: 1px dashed #C4A882; padding-top: 6px; width: 80%;
+}
+.calling-card.alert .card-note { color: #8B2020; font-weight: 600; font-style: normal; }
+
+/* ── COLOPHON ───────────────────────────────────────── */
+.colophon {
+  margin-top: 60px;
+  text-align: center;
+  padding: 24px 20px;
+  border-top: 2px double #8B7355;
+  border-bottom: 2px double #8B7355;
+}
+.colophon p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 14px;
+  color: #5C3D2E;
+  max-width: 640px; margin: 14px auto 8px;
+  line-height: 1.6;
+}
+.colophon-meta {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 11px; letter-spacing: 4px; color: #8B7355;
+}
+.colophon > svg { margin: 0 auto; }
+
+/* ── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 880px) {
+  #root { padding: 24px 16px 60px; }
+  .ledger-totals { grid-template-columns: 1fr; gap: 14px; }
+  .ledger-divider { width: 60%; height: 1px; margin: 0 auto; }
+  .board-notes { grid-template-columns: 1fr; gap: 36px; }
+  .cat-row { grid-template-columns: 1fr; gap: 4px; }
+  .cat-fig { text-align: left; }
+  .project-grid { grid-template-columns: 1fr; }
+  .masthead-top { flex-direction: column; align-items: flex-start; }
+  .masthead-right { align-self: stretch; justify-content: space-between; }
+}
+
+/* ── PRINT ──────────────────────────────────────────── */
+@media print {
+  body { background: white; }
+  body::before { display: none; }
+  #root { max-width: 100%; padding: 18px; }
+  .print-seal, .rolodex-toggle, .notes-toggle, .filter-bar,
+  .zone-tiles, .filter-readout { display: none !important; }
+  .project-grid { grid-template-columns: 1fr !important; }
+  .project-card { break-inside: avoid; box-shadow: none; border: 1px solid #999; }
+  .corkboard, .ledger, .house-section { break-inside: avoid; }
+  .board-surface { background: #F5F0E8; box-shadow: none; border: 1px solid #999; }
+  .pinned-note { box-shadow: none; transform: none !important; }
+  .colophon { page-break-before: avoid; }
+  .alert-notice { box-shadow: none; background: #fff; border: 2px solid #8B2020; }
+  .notes-body { display: block !important; }
+  @page { margin: 16mm; }
+}
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <!-- data.jsx — project data, contractor list, zone definitions -->
+  <script type="text/babel">
+// Project data for 3685 Pershing Ave dashboard
+const PROJECTS = [
+  // ── IN PROGRESS / IMMINENT ───────────────────────────────
+  {
+    id: "lr-window",
+    name: "Living Room Window Restoration",
+    area: "Living Room",
+    zone: "living",
+    contractor: "Heartwood Restoration",
+    status: "IN PROGRESS",
+    estimated: 4200,
+    paid: 450,
+    paidNote: "deposit paid Jan 2, 2026",
+    timeline: "End of May 2026",
+    timelineStart: "May 20",
+    timelineEnd: "May 30",
+    phase: "may",
+    notes: "Mold, wood rot, full casement repair. Deposit paid Jan 2, 2026. Heartwood confirmed for end of May 2026 start."
+  },
+  {
+    id: "lr-stain",
+    name: "Stain Finishing — Natural Pine Casement",
+    area: "Living Room",
+    zone: "living",
+    contractor: "TBD",
+    status: "PLANNED",
+    estimated: null,
+    paid: 0,
+    timeline: "June 2026 (after Heartwood)",
+    phase: "summer",
+    notes: "Natural pine finish on new casement after window install."
+  },
+  {
+    id: "wrs",
+    name: "Wildlife Removal & Rodent Exclusion",
+    area: "Crawlspace & Attic",
+    zone: "crawlspace",
+    contractor: "WRS — Joey Caro",
+    contractorPhone: "619-786-6440",
+    status: "ACTION NEEDED",
+    estimated: 1764,
+    paid: 0,
+    timeline: "June 2026",
+    phase: "summer",
+    notes: "Estimate #3155 EXPIRED April 23, 2026. Must call to renew before booking. Breakdown: Rodent Trapping (attic + crawl space) $459, weekly checks until activity ceases, 1-year warranty. Foundation Access Door rescreen $299. Foundation Vents ×4 (1/4\" galvanized mesh) $316. Round Attic Vents ×10 (1/4\" wire mesh) $690. Financing available: $80.51/month."
+  },
+
+  // ── SUMMER 2026 ──────────────────────────────────────────
+  {
+    id: "laundry-floor",
+    name: "Laundry Room New Floor (LVP)",
+    area: "Laundry",
+    zone: "interior",
+    contractor: "Home Depot",
+    status: "PLANNED",
+    estimated: 1000,
+    paid: 0,
+    timeline: "Before July 4, 2026",
+    phase: "summer",
+    notes: "Remove washer/dryer, install LVP. Future plan includes stackable washer/dryer and new sink."
+  },
+  {
+    id: "floor-refinish-current",
+    name: "Hardwood Floor Refinish — Full Interior",
+    area: "Whole House",
+    zone: "interior",
+    contractor: "Ismael",
+    status: "IN PROGRESS",
+    estimated: 7360,
+    paid: 500,
+    paidNote: "deposit paid June 12",
+    timeline: "July 7, 2026",
+    timelineStart: "Jul 7",
+    timelineEnd: "Jul 14",
+    phase: "summer",
+    notes: "White oak and Douglas fir. $500 deposit paid June 12. Furniture must be fully removed July 4–6 prior to start."
+  },
+  {
+    id: "paint-current",
+    name: "Interior Wall & Baseboard Painting",
+    area: "Whole House",
+    zone: "interior",
+    contractor: "Henry Chiang",
+    status: "IN PROGRESS",
+    estimated: 3300,
+    paid: 340,
+    paidNote: "10% deposit paid June 6",
+    timeline: "July 12, 2026 (after floor refinish)",
+    phase: "summer",
+    notes: "Revised estimate received and signed June 4. 10% deposit paid. Ceilings would be additional $4,400 (local SD quote $6,800 walls only)."
+  },
+  {
+    id: "trim",
+    name: "Tree & Shrub Trimming",
+    area: "Yard & Garden",
+    zone: "garden",
+    contractor: "First Class Tree Service",
+    status: "PLANNED",
+    estimated: 1100,
+    paid: 0,
+    timeline: "Summer 2026",
+    phase: "summer",
+    notes: "Sage, pomegranate, cypress, strawberry trees."
+  },
+  {
+    id: "solar-clean",
+    name: "Solar Panel Cleaning",
+    area: "Exterior",
+    zone: "exterior",
+    contractor: "Jeff — SoCal Solar Clean",
+    contractorPhone: "619-538-9779",
+    status: "PLANNED",
+    estimated: 345,
+    paid: 0,
+    timeline: "Summer 2026",
+    phase: "summer",
+    notes: "Also quoted $250 for windows + screens in/out."
+  },
+  {
+    id: "screens",
+    name: "Repair Screens (Dog-Proof)",
+    area: "Exterior",
+    zone: "exterior",
+    contractor: "Mobile Rescreen",
+    status: "PLANNED",
+    estimated: 144,
+    paid: 0,
+    timeline: "Summer 2026",
+    phase: "summer",
+    notes: "Dog-proof screen material requested."
+  },
+  {
+    id: "curtains",
+    name: "New Bedroom Curtains",
+    area: "Bedrooms",
+    zone: "interior",
+    contractor: "DIY",
+    isDIY: true,
+    status: "PLANNED",
+    estimated: 85,
+    paid: 0,
+    timeline: "Summer 2026",
+    phase: "summer",
+    notes: "Amazon / Mom."
+  },
+  {
+    id: "front-door",
+    name: "Front Door Refinish",
+    area: "Front Porch",
+    zone: "porch",
+    contractor: "William VanDusen",
+    status: "PLANNED",
+    estimated: null,
+    paid: 0,
+    timeline: "Follow up",
+    phase: "summer",
+    notes: "Scheduled Jan 7 — status unclear, follow up to confirm completion or reschedule."
+  },
+  {
+    id: "porch-bench",
+    name: "Front Porch Bench Refinish",
+    area: "Front Porch",
+    zone: "porch",
+    contractor: "DIY",
+    isDIY: true,
+    status: "PLANNED",
+    estimated: 0,
+    paid: 0,
+    timeline: "Summer 2026",
+    phase: "summer",
+    notes: "Sand and refinish with stain or Captain's varnish."
+  },
+
+  // ── AUTUMN 2026 ──────────────────────────────────────────
+  {
+    id: "lr-window-fall",
+    name: "Living Room Window Follow-Up",
+    area: "Living Room",
+    zone: "living",
+    contractor: "Heartwood Restoration",
+    status: "PLANNED",
+    estimated: null,
+    estimatedNote: "Included in $4,200 scope",
+    paid: 0,
+    timeline: "September 2026",
+    phase: "autumn",
+    notes: "Confirm with Heartwood whether September work is part of existing contract or separate."
+  },
+
+  // ── COMPLETED ────────────────────────────────────────────
+  {
+    id: "floor-done",
+    name: "Hardwood Floor Refinish",
+    area: "Whole House",
+    zone: "interior",
+    contractor: "Ismael",
+    status: "COMPLETED",
+    estimated: 7360,
+    paid: 7360,
+    paidNote: "PAID IN FULL",
+    phase: "done",
+    notes: "White oak and Douglas fir. Complete."
+  },
+  {
+    id: "paint-done",
+    name: "Interior Wall & Baseboard Painting",
+    area: "Whole House",
+    zone: "interior",
+    contractor: "Henry Chiang",
+    status: "COMPLETED",
+    estimated: 3300,
+    paid: 3300,
+    paidNote: "PAID IN FULL",
+    phase: "done",
+    notes: "Complete."
+  },
+  {
+    id: "dr-window",
+    name: "Dining Room Window — Caulk & Paint",
+    area: "Dining Room",
+    zone: "dining",
+    contractor: "DIY (Paul)",
+    isDIY: true,
+    status: "COMPLETED",
+    estimated: 0,
+    paid: 0,
+    phase: "done",
+    notes: "Primed, caulked, and painted by Paul."
+  },
+  {
+    id: "utilities",
+    name: "Utility Transfers",
+    area: "Whole House",
+    zone: "interior",
+    contractor: "DIY",
+    isDIY: true,
+    status: "COMPLETED",
+    estimated: 0,
+    paid: 0,
+    phase: "done",
+    notes: "Water — done May 30. Gas (SDGE) — done June 2. Electric (SDGE) — done June 2. Internet (ATT Fiber, self-install) — June 20."
+  },
+
+  // ── ON HOLD ──────────────────────────────────────────────
+  {
+    id: "bath",
+    name: "Expand Second Bathroom",
+    area: "Bathrooms",
+    zone: "interior",
+    contractor: "Gary Faith",
+    status: "ON HOLD",
+    estimated: 47000,
+    paid: 0,
+    timeline: "No start date set",
+    phase: "hold",
+    notes: "Full bathroom expansion. On hold — no start date set."
+  },
+  {
+    id: "screen-doors",
+    name: "New Screen Doors (Bedroom + Side)",
+    area: "Exterior",
+    zone: "exterior",
+    contractor: "Security Screen Doors",
+    status: "ON HOLD",
+    estimated: null,
+    paid: 0,
+    phase: "hold",
+    notes: "Plain Jane screen door estimate needed. On hold."
+  }
+];
+
+const CONTRACTORS = [
+  { name: "Heartwood Restoration", specialty: "Windows & Exterior Wood", paid: 450, note: "Starting end of May 2026" },
+  { name: "Ismael", specialty: "Hardwood Floor Refinishing", paid: 500, note: "Deposit paid · July 7 start" },
+  { name: "Henry Chiang", specialty: "Interior Painting", paid: 3300, note: "PAID IN FULL" },
+  { name: "WRS / Joey Caro", specialty: "Wildlife & Rodent Removal", paid: 0, note: "619-786-6440 · ⚠ Renew estimate", alert: true },
+  { name: "Gary Faith", specialty: "Plumbing & Bathroom Renovation", paid: 0, note: "On hold · $47,000 estimated" },
+  { name: "Victor Martinez", specialty: "Landscaping & Yard", paid: 215, note: "Ongoing" },
+  { name: "Tony Hill", specialty: "Carpentry", paid: 180, note: "On call" },
+  { name: "William VanDusen", specialty: "Door Finishing", paid: 0, note: "Status unclear — follow up" }
+];
+
+const ZONES = [
+  { id: "living",     label: "Living Room",        on: "elevation" },
+  { id: "porch",      label: "Front Porch",        on: "elevation" },
+  { id: "dining",     label: "Dining Room",        on: "elevation" },
+  { id: "exterior",   label: "Exterior & Roof",    on: "elevation" },
+  { id: "garden",     label: "Front Garden",       on: "elevation" },
+  { id: "interior",   label: "Interior Rooms",     on: "tile" },
+  { id: "backyard",   label: "Backyard & ADU",     on: "tile" },
+  { id: "crawlspace", label: "Crawlspace & Attic", on: "tile" }
+];
+
+window.PROJECTS = PROJECTS;
+window.CONTRACTORS = CONTRACTORS;
+window.ZONES = ZONES;
+  </script>
+
+  <!-- house.jsx — SVG illustration of the facade with clickable zones -->
+  <script type="text/babel">
+// SVG illustration of 3685 Pershing Ave — Spanish Revival facade
+function HouseElevation({ activeZone, onZoneClick }) {
+  const isActive = (z) => activeZone === z;
+  const zoneClass = (z) =>
+    `zone-hot ${isActive(z) ? "zone-active" : ""}`;
+
+  return (
+    <svg
+      viewBox="0 0 900 520"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ width: "100%", height: "auto", display: "block" }}
+      aria-label="3685 Pershing Ave facade"
+    >
+      <defs>
+        <pattern id="stucco" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <rect width="40" height="40" fill="#EFE4D2" />
+          <circle cx="6" cy="9" r="0.6" fill="#C4A882" opacity="0.4" />
+          <circle cx="22" cy="17" r="0.5" fill="#C4A882" opacity="0.5" />
+          <circle cx="33" cy="6" r="0.4" fill="#C4A882" opacity="0.4" />
+          <circle cx="14" cy="28" r="0.5" fill="#C4A882" opacity="0.4" />
+          <circle cx="29" cy="33" r="0.6" fill="#C4A882" opacity="0.4" />
+          <circle cx="38" cy="22" r="0.4" fill="#C4A882" opacity="0.5" />
+        </pattern>
+        <pattern id="sideStucco" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <rect width="40" height="40" fill="#E5D7BE" />
+          <circle cx="10" cy="12" r="0.6" fill="#A88F6A" opacity="0.5" />
+          <circle cx="26" cy="24" r="0.5" fill="#A88F6A" opacity="0.5" />
+          <circle cx="35" cy="9" r="0.4" fill="#A88F6A" opacity="0.4" />
+          <circle cx="17" cy="31" r="0.5" fill="#A88F6A" opacity="0.5" />
+        </pattern>
+        <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#F0E6D0" />
+          <stop offset="1" stopColor="#F5EDD8" />
+        </linearGradient>
+        <linearGradient id="wood" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#6B4528" />
+          <stop offset="1" stopColor="#4A2F1C" />
+        </linearGradient>
+        <linearGradient id="doorWood" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#3A2415" />
+          <stop offset="1" stopColor="#22150C" />
+        </linearGradient>
+        <filter id="ink" x="-2%" y="-2%" width="104%" height="104%">
+          <feTurbulence baseFrequency="0.9" numOctaves="2" seed="3" />
+          <feDisplacementMap in="SourceGraphic" scale="0.6" />
+        </filter>
+      </defs>
+
+      {/* Sky */}
+      <rect x="0" y="0" width="900" height="380" fill="url(#sky)" />
+
+      {/* Distant tree silhouettes */}
+      <g opacity="0.25" fill="#5C3D2E">
+        <ellipse cx="60" cy="220" rx="45" ry="55" />
+        <ellipse cx="100" cy="240" rx="40" ry="45" />
+        <ellipse cx="840" cy="210" rx="55" ry="65" />
+        <ellipse cx="800" cy="235" rx="38" ry="42" />
+      </g>
+
+      {/* Ground */}
+      <rect x="0" y="430" width="900" height="90" fill="#D9C8A8" />
+      <line x1="0" y1="430" x2="900" y2="430" stroke="#8B7355" strokeWidth="1.2" />
+
+      {/* ── MAIN STUCCO FACADE ─────────────────────────── */}
+      <g>
+        <rect x="120" y="170" width="620" height="270" fill="url(#stucco)" stroke="#8B7355" strokeWidth="1.4" />
+        <rect x="740" y="195" width="105" height="245" fill="url(#sideStucco)" stroke="#8B7355" strokeWidth="1.2" />
+        <line x1="740" y1="195" x2="740" y2="440" stroke="#8B7355" strokeWidth="1.2" />
+
+        {/* Parapet scalloped silhouette */}
+        <path
+          d="M 120 170
+             Q 145 130, 170 145
+             T 220 145
+             Q 245 125, 270 145
+             T 320 145
+             Q 345 130, 370 145
+             T 420 145
+             Q 445 120, 480 140
+             Q 510 165, 540 140
+             Q 565 120, 600 145
+             T 650 145
+             Q 675 130, 700 145
+             T 740 150
+             L 740 170 Z"
+          fill="#EFE4D2"
+          stroke="#8B7355"
+          strokeWidth="1.4"
+        />
+        <path
+          d="M 740 195
+             Q 760 175, 780 188
+             T 815 188
+             Q 835 170, 845 195
+             L 845 200
+             L 740 200 Z"
+          fill="#E5D7BE"
+          stroke="#8B7355"
+          strokeWidth="1.2"
+        />
+
+        {/* Terracotta tile band */}
+        <rect x="120" y="172" width="620" height="10" fill="#C4623A" />
+        <g>
+          {Array.from({ length: 41 }).map((_, i) => (
+            <line key={i} x1={120 + i * 15.5} y1="172" x2={120 + i * 15.5} y2="182" stroke="#8B3A1F" strokeWidth="0.6" />
+          ))}
+        </g>
+        <line x1="120" y1="172" x2="740" y2="172" stroke="#8B3A1F" strokeWidth="0.6" />
+        <line x1="120" y1="182" x2="740" y2="182" stroke="#8B3A1F" strokeWidth="0.6" />
+
+        {/* Terracotta pipe dots */}
+        {[170, 220, 290, 370, 480, 540, 600, 670, 720].map((cx) => (
+          <g key={cx}>
+            <circle cx={cx} cy="155" r="3.5" fill="#C4623A" stroke="#8B3A1F" strokeWidth="0.5" />
+            <circle cx={cx} cy="155" r="1.2" fill="#22150C" />
+          </g>
+        ))}
+      </g>
+
+      {/* ── EXTERIOR / ROOF HOTSPOT ───────────────────── */}
+      <rect x="120" y="115" width="725" height="65" fill="transparent"
+        className={zoneClass("exterior")} onClick={() => onZoneClick("exterior")} style={{ cursor: "pointer" }}>
+        <title>Exterior &amp; Roof</title>
+      </rect>
+
+      {/* ── LEFT: LIVING ROOM ARCHED WINDOW ───────────── */}
+      <g>
+        <path d="M 165 280 L 165 240 A 55 55 0 0 1 275 240 L 275 280 Z"
+          fill="#1a1410" stroke="url(#wood)" strokeWidth="6" />
+        <line x1="220" y1="180" x2="220" y2="280" stroke="#3a2818" strokeWidth="2" />
+        <line x1="165" y1="245" x2="275" y2="245" stroke="#3a2818" strokeWidth="1.5" />
+        <line x1="165" y1="262" x2="275" y2="262" stroke="#3a2818" strokeWidth="1.5" />
+        <path d="M 175 250 L 180 198 L 185 198 L 180 250 Z" fill="#F5EDD8" opacity="0.18" />
+        <path d="M 228 250 L 234 198 L 240 198 L 234 250 Z" fill="#F5EDD8" opacity="0.18" />
+        <rect x="158" y="280" width="124" height="6" fill="#5C3D2E" />
+      </g>
+      <path d="M 158 180 L 282 180 L 282 290 L 158 290 Z" fill="transparent"
+        className={zoneClass("living")} onClick={() => onZoneClick("living")} style={{ cursor: "pointer" }}>
+        <title>Living Room</title>
+      </path>
+
+      {/* ── CENTER: ARCHED PORTICO ENTRY ───────────────── */}
+      <g>
+        <path d="M 370 410 L 370 280 A 80 80 0 0 1 530 280 L 530 410 Z" fill="#2A1F15" />
+        <path d="M 370 410 L 370 280 A 80 80 0 0 1 530 280 L 530 410"
+          fill="none" stroke="#8B7355" strokeWidth="2.5" />
+        <g fill="#F5EDD8" stroke="#8B7355" strokeWidth="1">
+          <path d="M 370 285 Q 355 280, 358 295 Q 360 305, 368 302 Q 365 295, 370 295 Z" />
+          <circle cx="362" cy="293" r="1.5" fill="#8B7355" />
+          <path d="M 530 285 Q 545 280, 542 295 Q 540 305, 532 302 Q 535 295, 530 295 Z" />
+          <circle cx="538" cy="293" r="1.5" fill="#8B7355" />
+        </g>
+        <rect x="408" y="305" width="84" height="105" fill="url(#doorWood)" stroke="#0E0905" strokeWidth="1.2" />
+        <line x1="450" y1="305" x2="450" y2="410" stroke="#0E0905" strokeWidth="1.2" />
+        <rect x="415" y="312" width="30" height="35" fill="none" stroke="#5C3D2E" strokeWidth="0.8" />
+        <rect x="455" y="312" width="30" height="35" fill="none" stroke="#5C3D2E" strokeWidth="0.8" />
+        <rect x="415" y="355" width="30" height="48" fill="none" stroke="#5C3D2E" strokeWidth="0.8" />
+        <rect x="455" y="355" width="30" height="48" fill="none" stroke="#5C3D2E" strokeWidth="0.8" />
+        <circle cx="443" cy="365" r="1.8" fill="#D4A853" />
+        <circle cx="457" cy="365" r="1.8" fill="#D4A853" />
+        <g stroke="#1a1410" strokeWidth="1" fill="#1a1410">
+          <line x1="505" y1="320" x2="505" y2="340" />
+          <polygon points="500,340 510,340 512,360 498,360" fill="#3a2818" />
+          <rect x="502" y="343" width="6" height="14" fill="#D4A853" opacity="0.7" />
+          <line x1="505" y1="357" x2="505" y2="365" />
+          <circle cx="505" cy="367" r="1.5" />
+        </g>
+        <text x="450" y="297" textAnchor="middle" fontFamily="'Inter', sans-serif"
+          fontSize="14" fontWeight="600" fill="#D4A853" letterSpacing="3">3685</text>
+        <g>
+          <circle cx="383" cy="365" r="9" fill="#C4623A" stroke="#5C3D2E" strokeWidth="1" />
+          <circle cx="383" cy="365" r="6" fill="none" stroke="#F5EDD8" strokeWidth="0.6" />
+          <text x="383" y="362" textAnchor="middle" fontFamily="serif" fontSize="3.2" fill="#F5EDD8">NORTH</text>
+          <text x="383" y="366" textAnchor="middle" fontFamily="serif" fontSize="3.2" fill="#F5EDD8">PARK</text>
+          <text x="383" y="370" textAnchor="middle" fontFamily="serif" fontSize="2.5" fill="#F5EDD8">1924</text>
+        </g>
+        <g>
+          {[0, 1, 2, 3].map((i) => (
+            <rect key={i} x={370 - i * 14} y={410 + i * 6} width={160 + i * 28} height="7"
+              fill="#D9C8A8" stroke="#8B7355" strokeWidth="0.8" />
+          ))}
+        </g>
+        <g stroke="#1a1410" strokeWidth="1.4" fill="none">
+          <line x1="540" y1="410" x2="558" y2="438" />
+          <line x1="540" y1="418" x2="556" y2="438" />
+          {[0, 1, 2, 3].map((i) => (
+            <line key={i} x1={544 + i * 4} y1={414 + i * 6} x2={544 + i * 4} y2={438} />
+          ))}
+        </g>
+      </g>
+      <path d="M 360 270 L 540 270 L 558 440 L 362 440 Z" fill="transparent"
+        className={zoneClass("porch")} onClick={() => onZoneClick("porch")} style={{ cursor: "pointer" }}>
+        <title>Front Porch</title>
+      </path>
+
+      {/* ── RIGHT: DINING / BEDROOM ARCHED WINDOW ──────── */}
+      <g>
+        <path d="M 605 290 L 605 250 A 45 45 0 0 1 695 250 L 695 290 Z"
+          fill="#1a1410" stroke="url(#wood)" strokeWidth="5" />
+        <line x1="650" y1="205" x2="650" y2="290" stroke="#3a2818" strokeWidth="1.8" />
+        <line x1="605" y1="252" x2="695" y2="252" stroke="#3a2818" strokeWidth="1.3" />
+        <line x1="605" y1="271" x2="695" y2="271" stroke="#3a2818" strokeWidth="1.3" />
+        <path d="M 614 260 L 618 215 L 622 215 L 618 260 Z" fill="#F5EDD8" opacity="0.18" />
+        <path d="M 658 260 L 663 215 L 668 215 L 663 260 Z" fill="#F5EDD8" opacity="0.18" />
+        <rect x="598" y="290" width="104" height="5" fill="#5C3D2E" />
+      </g>
+      <path d="M 595 200 L 705 200 L 705 298 L 595 298 Z" fill="transparent"
+        className={zoneClass("dining")} onClick={() => onZoneClick("dining")} style={{ cursor: "pointer" }}>
+        <title>Dining Room</title>
+      </path>
+
+      {/* Side panel small window */}
+      <rect x="765" y="270" width="55" height="65" fill="#1a1410" stroke="#5C3D2E" strokeWidth="2" />
+      <line x1="792" y1="270" x2="792" y2="335" stroke="#3a2818" strokeWidth="1" />
+      <line x1="765" y1="302" x2="820" y2="302" stroke="#3a2818" strokeWidth="1" />
+
+      {/* ── FOREGROUND: STONE WALL + GARDEN ─────────────── */}
+      <g>
+        <rect x="0" y="445" width="900" height="38" fill="#D9C8A8" />
+        <g stroke="#8B7355" strokeWidth="0.8" fill="#C8B894">
+          {Array.from({ length: 18 }).map((_, i) => (
+            <rect key={i} x={i * 50} y="445" width="50" height="18" />
+          ))}
+          {Array.from({ length: 18 }).map((_, i) => (
+            <rect key={`b${i}`} x={i * 50 + 25} y="463" width="50" height="20" />
+          ))}
+        </g>
+        <g>
+          <ellipse cx="40" cy="455" rx="35" ry="14" fill="#8B5A3C" opacity="0.7" />
+          <ellipse cx="40" cy="448" rx="28" ry="11" fill="#A66E48" opacity="0.7" />
+          {[20, 35, 48, 60].map((x, i) => (
+            <line key={i} x1={x} y1="455" x2={x + 2} y2="430" stroke="#7A3F5E" strokeWidth="2" opacity="0.75" />
+          ))}
+          <g stroke="#B58A4F" strokeWidth="1.2" fill="none" opacity="0.85">
+            <path d="M 95 450 Q 92 425, 88 420" />
+            <path d="M 100 450 Q 102 422, 98 415" />
+            <path d="M 105 450 Q 108 428, 105 418" />
+            <path d="M 110 450 Q 112 430, 110 425" />
+          </g>
+          <ellipse cx="290" cy="455" rx="40" ry="13" fill="#7A4F3A" opacity="0.55" />
+          <ellipse cx="290" cy="448" rx="30" ry="10" fill="#9A6543" opacity="0.65" />
+          <ellipse cx="850" cy="455" rx="40" ry="14" fill="#8B5A3C" opacity="0.7" />
+          <ellipse cx="850" cy="448" rx="32" ry="11" fill="#A66E48" opacity="0.7" />
+          {[825, 840, 855, 870].map((x, i) => (
+            <line key={i} x1={x} y1="455" x2={x + 2} y2="430" stroke="#7A3F5E" strokeWidth="2" opacity="0.75" />
+          ))}
+          <g stroke="#B58A4F" strokeWidth="1.2" fill="none" opacity="0.85">
+            <path d="M 790 452 Q 792 425, 788 418" />
+            <path d="M 795 452 Q 798 425, 796 415" />
+            <path d="M 800 452 Q 802 430, 800 420" />
+          </g>
+          <ellipse cx="450" cy="478" rx="25" ry="5" fill="#C8B894" stroke="#8B7355" strokeWidth="0.6" />
+          <ellipse cx="450" cy="495" rx="28" ry="6" fill="#C8B894" stroke="#8B7355" strokeWidth="0.6" />
+        </g>
+      </g>
+      <rect x="0" y="430" width="900" height="90" fill="transparent"
+        className={zoneClass("garden")} onClick={() => onZoneClick("garden")} style={{ cursor: "pointer" }}>
+        <title>Front Garden</title>
+      </rect>
+    </svg>
+  );
+}
+
+window.HouseElevation = HouseElevation;
+  </script>
+
+  <!-- app.jsx — main dashboard component -->
+  <script type="text/babel">
+const STATUSES = ["All", "In Progress", "Completed", "Planned", "On Hold", "Action Needed"];
+const SORTS = ["Phase", "Budget ↓", "Contractor", "Area"];
+
+const PHASES = [
+  { id: "may",    label: "May",       roman: "MMXXVI", sub: "" },
+  { id: "summer", label: "Summer",    roman: "MMXXVI", sub: "June–August" },
+  { id: "autumn", label: "Autumn",    roman: "MMXXVI", sub: "September+" },
+  { id: "done",   label: "Completed", roman: "",       sub: "" },
+  { id: "hold",   label: "On Hold",   roman: "",       sub: "" }
+];
+
+const fmtMoney = (n) =>
+  n == null ? "—" : "$" + n.toLocaleString("en-US");
+
+function Ornament({ width = 200 }) {
+  return (
+    <svg viewBox="0 0 200 22" style={{ width, height: 22, display: "block" }}>
+      <line x1="0" y1="9" x2="80" y2="9" stroke="#8B7355" strokeWidth="1" />
+      <line x1="0" y1="13" x2="80" y2="13" stroke="#8B7355" strokeWidth="0.5" />
+      <g transform="translate(100,11)" stroke="#5C3D2E" strokeWidth="1.1" fill="none">
+        <rect x="-10" y="-6" width="12" height="12" transform="rotate(45)" />
+        <rect x="-6" y="-6" width="12" height="12" transform="rotate(45)" />
+        <rect x="-2" y="-6" width="12" height="12" transform="rotate(45)" />
+        <circle cx="0" cy="0" r="2" fill="#C4623A" stroke="none" />
+      </g>
+      <line x1="120" y1="9" x2="200" y2="9" stroke="#8B7355" strokeWidth="1" />
+      <line x1="120" y1="13" x2="200" y2="13" stroke="#8B7355" strokeWidth="0.5" />
+    </svg>
+  );
+}
+
+function StatusBadge({ status }) {
+  const map = {
+    "IN PROGRESS":   { color: "#C4623A", border: "#8B3A1F", rot: 1,  bg: "rgba(196,98,58,0.08)" },
+    "COMPLETED":     { color: "#2D4A2D", border: "#1F3320", rot: -2, bg: "rgba(45,74,45,0.08)" },
+    "PLANNED":       { color: "#4A6274", border: "#2F4250", rot: 0,  bg: "transparent" },
+    "ON HOLD":       { color: "#8B2020", border: "#5A1212", rot: -2, bg: "transparent" },
+    "ACTION NEEDED": { color: "#A36A00", border: "#7A4A00", rot: 1,  bg: "rgba(212,168,83,0.18)" }
+  };
+  const s = map[status] || map.PLANNED;
+  return (
+    <span style={{
+      display: "inline-flex", alignItems: "center", gap: 6,
+      fontFamily: "'Playfair Display', serif", fontWeight: 700,
+      fontSize: 10.5, letterSpacing: "2px", color: s.color,
+      border: `1.8px ${status === "PLANNED" ? "dashed" : "solid"} ${s.border}`,
+      padding: "4px 10px", background: s.bg,
+      textTransform: "uppercase", transform: `rotate(${s.rot}deg)`,
+      borderRadius: 2,
+      boxShadow: status === "COMPLETED" ? "inset 0 0 0 2px #2D4A2D, 0 0 0 1px #F5F0E8" : "none"
+    }}>
+      {status === "COMPLETED" && <span style={{ fontSize: 11 }}>&#10003;</span>}
+      {status === "ACTION NEEDED" && <span style={{ fontSize: 11 }}>!</span>}
+      {status}
+    </span>
+  );
+}
+
+function TapeBar({ value, max, alert }) {
+  const pct = max > 0 ? Math.min(100, (value / max) * 100) : 0;
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <div style={{
+        position: "relative", flex: 1, height: 10,
+        background: "#E0CFA9", border: "1px solid #8B7355",
+        borderRadius: 0, overflow: "hidden"
+      }}>
+        <div style={{
+          width: `${pct}%`, height: "100%",
+          background: alert
+            ? "repeating-linear-gradient(45deg,#8B2020 0 4px,#A33030 4px 8px)"
+            : "linear-gradient(180deg,#C4623A,#A14A2A)",
+          transition: "width 0.4s ease"
+        }} />
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div key={i} style={{
+            position: "absolute", left: `${i * 5}%`, top: 0, width: 1,
+            height: i % 4 === 0 ? 10 : 5, background: "rgba(92,61,46,0.35)"
+          }} />
+        ))}
+      </div>
+      <span style={{ fontFamily: "Inter, sans-serif", fontSize: 11, color: "#5C3D2E", minWidth: 36, textAlign: "right" }}>
+        {Math.round(pct)}%
+      </span>
+    </div>
+  );
+}
+
+function ProjectCard({ p, expanded, onToggle }) {
+  const onHold = p.status === "ON HOLD";
+  const completed = p.status === "COMPLETED";
+  const action = p.status === "ACTION NEEDED";
+  return (
+    <div
+      className={`project-card ${onHold ? "on-hold" : ""} ${completed ? "completed" : ""} ${action ? "action" : ""}`}
+      onClick={onToggle}
+    >
+      {onHold && <div className="hold-stamp">ON HOLD</div>}
+      <div className="card-top">
+        <StatusBadge status={p.status} />
+        <span className="area-tag">{p.area}</span>
+      </div>
+      <h3 className="project-name">{p.name}</h3>
+      <div className="contractor-line">
+        {p.isDIY
+          ? <span className="diy-tag">DIY</span>
+          : <span className="contractor-chip"><span className="dot" />{p.contractor}</span>
+        }
+        {p.contractorPhone && <span className="phone">&middot; {p.contractorPhone}</span>}
+      </div>
+      {p.timeline && (
+        <div className="timeline-row">
+          <span className="timeline-label">Timeline</span>
+          <span className="timeline-value">{p.timeline}</span>
+        </div>
+      )}
+      <div className="money-grid">
+        <div>
+          <div className="money-label">Estimated</div>
+          <div className="money-value">
+            {p.estimated == null ? (p.estimatedNote || "TBD") : fmtMoney(p.estimated)}
+          </div>
+        </div>
+        <div>
+          <div className="money-label">Paid</div>
+          <div className="money-value">{fmtMoney(p.paid || 0)}</div>
+          {p.paidNote && <div className="money-note">{p.paidNote}</div>}
+        </div>
+      </div>
+      {p.estimated > 0 && <TapeBar value={p.paid || 0} max={p.estimated} alert={action} />}
+      <button className="notes-toggle" onClick={(e) => { e.stopPropagation(); onToggle(); }}>
+        {expanded ? "▾" : "▸"} Notes
+      </button>
+      {expanded && (
+        <div className="notes-body">
+          <p>{p.notes}</p>
+          <div className="polaroid">
+            <div className="polaroid-frame">
+              <span className="polaroid-icon">&#9651;</span>
+              <span className="polaroid-text">photo slot</span>
+            </div>
+            <div className="polaroid-caption">&mdash; {p.name.toLowerCase()} &mdash;</div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PinnedNote({ rot, color, title, body, cost, area, warn }) {
+  return (
+    <div className="pinned-note" style={{ transform: `rotate(${rot}deg)`, background: color }}>
+      <div className="pin" />
+      <h4 className="note-title">{title}</h4>
+      <p className="note-body">{body}</p>
+      <div className="note-meta">
+        <span className="note-cost">{cost}</span>
+        <span className="note-area">{area}</span>
+      </div>
+      {warn && <div className="note-warn">&#9888; {warn}</div>}
+    </div>
+  );
+}
+
+function PhaseDivider({ phase, count }) {
+  return (
+    <div className="phase-divider">
+      <span className="phase-rule" />
+      <span className="phase-text">
+        <span className="phase-label">{phase.label}</span>
+        {phase.roman && <span className="phase-roman"> &middot; {phase.roman}</span>}
+        {phase.sub && <span className="phase-sub"> ({phase.sub})</span>}
+        <span className="phase-count"> &mdash; {count} {count === 1 ? "project" : "projects"}</span>
+      </span>
+      <span className="phase-rule" />
+    </div>
+  );
+}
+
+function Dashboard() {
+  const [zone, setZone] = React.useState(null);
+  const [status, setStatus] = React.useState("All");
+  const [sort, setSort] = React.useState("Phase");
+  const [expanded, setExpanded] = React.useState({});
+  const [rolodexOpen, setRolodexOpen] = React.useState(false);
+
+  const projects = window.PROJECTS;
+  const contractors = window.CONTRACTORS;
+
+  const today = new Date(2026, 4, 18);
+  const todayLong = today.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+  const totals = React.useMemo(() => {
+    let est = 0, paid = 0;
+    projects.forEach(p => {
+      if (p.status !== "ON HOLD" && p.estimated) est += p.estimated;
+      paid += (p.paid || 0);
+    });
+    return {
+      est, paid, remaining: est - paid,
+      active: projects.filter(p => p.status === "IN PROGRESS").length,
+      tracked: projects.length
+    };
+  }, [projects]);
+
+  const categories = React.useMemo(() => [
+    { name: "Interior Finishes", paid: 10660, total: 13960 },
+    { name: "Windows & Doors",   paid: 450,   total: 4200 },
+    { name: "Wildlife Removal",  paid: 0,     total: 1764, alert: true },
+    { name: "Outdoor & Garden",  paid: 1100,  total: 2204 },
+    { name: "Plumbing & Baths",  paid: 0,     total: 47000, onHold: true }
+  ], []);
+
+  const filtered = React.useMemo(() => {
+    let list = projects.slice();
+    if (zone) list = list.filter(p => p.zone === zone);
+    if (status !== "All") {
+      const map = {
+        "In Progress": "IN PROGRESS", "Completed": "COMPLETED",
+        "Planned": "PLANNED", "On Hold": "ON HOLD", "Action Needed": "ACTION NEEDED"
+      };
+      list = list.filter(p => p.status === map[status]);
+    }
+    if (sort === "Budget ↓") list.sort((a, b) => (b.estimated || 0) - (a.estimated || 0));
+    else if (sort === "Contractor") list.sort((a, b) => (a.contractor || "").localeCompare(b.contractor || ""));
+    else if (sort === "Area") list.sort((a, b) => a.area.localeCompare(b.area));
+    return list;
+  }, [projects, zone, status, sort]);
+
+  const grouped = React.useMemo(() => {
+    if (sort !== "Phase") return null;
+    const g = {};
+    PHASES.forEach(ph => { g[ph.id] = []; });
+    filtered.forEach(p => { if (g[p.phase]) g[p.phase].push(p); });
+    return g;
+  }, [filtered, sort]);
+
+  const activeZoneLabel = zone
+    ? (window.ZONES.find(z => z.id === zone)?.label || "")
+    : "All";
+
+  return (
+    <div className="dashboard">
+      {/* MASTHEAD */}
+      <header className="masthead">
+        <div className="masthead-top">
+          <div>
+            <div className="eyebrow">Renovation Journal</div>
+            <h1 className="address">3685 Pershing Ave</h1>
+            <div className="subaddress">North Park &middot; San Diego &middot; Est. <span className="num">1924</span></div>
+          </div>
+          <div className="masthead-right">
+            <div className="date-stamp">
+              <div className="date-label">As of</div>
+              <div className="date-value">{todayLong}</div>
+            </div>
+            <button className="print-seal" onClick={() => window.print()} title="Print Summary">
+              <svg viewBox="0 0 64 64" width="56" height="56">
+                <circle cx="32" cy="32" r="29" fill="#8B2020" stroke="#5A1212" strokeWidth="2" />
+                <circle cx="32" cy="32" r="24" fill="none" stroke="#F5F0E8" strokeWidth="0.8" strokeDasharray="2 2" />
+                <text x="32" y="28" textAnchor="middle" fontFamily="'Playfair Display', serif" fontSize="8.5" fill="#F5F0E8" letterSpacing="1.2">PRINT</text>
+                <text x="32" y="40" textAnchor="middle" fontFamily="'Playfair Display', serif" fontSize="7.5" fill="#F5F0E8" letterSpacing="1">SUMMARY</text>
+                <line x1="14" y1="46" x2="50" y2="46" stroke="#F5F0E8" strokeWidth="0.6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="ornament-row"><Ornament width={320} /></div>
+        <div className="pulse-line">
+          <span><b className="num">{totals.tracked}</b> projects tracked</span>
+          <span className="dot-sep">&middot;</span>
+          <span><b className="num">{fmtMoney(totals.est)}</b> estimated</span>
+          <span className="dot-sep">&middot;</span>
+          <span><b className="num">{fmtMoney(totals.paid)}</b> paid</span>
+          <span className="dot-sep">&middot;</span>
+          <span><b className="num">{totals.active}</b> active this month</span>
+        </div>
+      </header>
+
+      {/* ACTION NEEDED BANNER */}
+      <div className="alert-notice">
+        <div className="notice-stamp">
+          <svg viewBox="0 0 40 40" width="40" height="40">
+            <circle cx="20" cy="20" r="18" fill="none" stroke="#8B2020" strokeWidth="2" />
+            <text x="20" y="27" textAnchor="middle" fontFamily="'Playfair Display', serif" fontSize="22" fill="#8B2020" fontWeight="700">!</text>
+          </svg>
+        </div>
+        <div className="notice-body">
+          <div className="notice-label">&mdash; NOTICE &middot; ACTION REQUIRED &mdash;</div>
+          <div className="notice-text">
+            <b>WRS Wildlife Removal &mdash; Estimate #3155 expired April 23, 2026.</b><br />
+            Call Joey Caro at <span className="phone-num">619-786-6440</span> to renew before booking. <i>June 2026 start date at risk.</i>
+          </div>
+        </div>
+        <div className="telegram-stripe" />
+      </div>
+
+      {/* FOREMAN'S BOARD */}
+      <section className="corkboard">
+        <div className="section-head">
+          <h2 className="section-title">Foreman's Board</h2>
+          <span className="section-sub">&mdash; What's happening now &middot; May&ndash;June 2026 &mdash;</span>
+        </div>
+        <div className="board-surface">
+          <div className="board-notes">
+            <PinnedNote rot={-2.2} color="#F4E9CC" title="Heartwood Restoration"
+              body="Window casement install in progress. May 20 → May 30, 2026."
+              cost="$4,200 · $450 paid" area="Living Room" />
+            <PinnedNote rot={1.5} color="#F5DCC4" title="WRS Wildlife"
+              body="Rodent trapping & exclusion — attic + crawl space."
+              cost="$1,764 estimated" area="Crawlspace & Attic" warn="Renew estimate before booking" />
+            <PinnedNote rot={-1.3} color="#EBE3CE" title="Ismael — Floors"
+              body="Hardwood floor refinish, full interior. July 7 start."
+              cost="$7,360 · $500 deposit" area="Whole House" />
+          </div>
+        </div>
+      </section>
+
+      {/* BUDGET LEDGER */}
+      <section className="ledger">
+        <div className="section-head">
+          <h2 className="section-title">Project Ledger</h2>
+          <span className="section-sub">&mdash; Estimated &middot; Paid &middot; Remaining &mdash;</span>
+        </div>
+        <div className="ledger-totals">
+          <div className="ledger-col">
+            <div className="ledger-label">Estimated</div>
+            <div className="ledger-num">{fmtMoney(totals.est)}</div>
+            <div className="ledger-sub">active projects</div>
+          </div>
+          <div className="ledger-divider" />
+          <div className="ledger-col">
+            <div className="ledger-label">Paid / Committed</div>
+            <div className="ledger-num terra">{fmtMoney(totals.paid)}</div>
+            <div className="ledger-sub">across {totals.tracked} entries</div>
+          </div>
+          <div className="ledger-divider" />
+          <div className="ledger-col">
+            <div className="ledger-label">Remaining</div>
+            <div className="ledger-num">{fmtMoney(totals.remaining)}</div>
+            <div className="ledger-sub">to be billed</div>
+          </div>
+        </div>
+        <div className="ledger-categories">
+          {categories.map(c => (
+            <div key={c.name} className={`cat-row ${c.onHold ? "on-hold-row" : ""}`}>
+              <div className="cat-name">
+                {c.name}
+                {c.alert && <span className="cat-warn"> &#9888;</span>}
+                {c.onHold && <span className="cat-hold"> (ON HOLD)</span>}
+              </div>
+              <div className="cat-bar"><TapeBar value={c.paid} max={c.total} alert={c.alert} /></div>
+              <div className="cat-fig">
+                <span className="num">{fmtMoney(c.paid)}</span>
+                <span className="cat-of"> of </span>
+                <span className="num">{fmtMoney(c.total)}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* HOUSE SELECTOR */}
+      <section className="house-section">
+        <div className="section-head">
+          <h2 className="section-title">The Facade</h2>
+          <span className="section-sub">&mdash; Click a zone to filter projects &mdash;</span>
+        </div>
+        <div className="house-frame">
+          <window.HouseElevation
+            activeZone={zone}
+            onZoneClick={(z) => setZone(zone === z ? null : z)}
+          />
+        </div>
+        <div className="zone-tiles">
+          {window.ZONES.filter(z => z.on === "tile").map(z => (
+            <button key={z.id} className={`zone-tile ${zone === z.id ? "active" : ""}`}
+              onClick={() => setZone(zone === z.id ? null : z.id)}>
+              <span className="tile-mark" />
+              <span className="tile-label">{z.label}</span>
+            </button>
+          ))}
+          <button className={`zone-tile clear ${!zone ? "active" : ""}`} onClick={() => setZone(null)}>
+            <span className="tile-mark" />
+            <span className="tile-label">All Zones</span>
+          </button>
+        </div>
+        <div className="filter-readout">
+          Showing: <i>{activeZoneLabel}</i> projects
+        </div>
+      </section>
+
+      {/* FILTER + SORT BAR */}
+      <section className="filter-bar">
+        <div className="filter-row">
+          <span className="filter-label">Status</span>
+          <div className="filter-tabs">
+            {STATUSES.map(s => (
+              <button key={s} className={`stamp-tab ${status === s ? "active" : ""}`} onClick={() => setStatus(s)}>{s}</button>
+            ))}
+          </div>
+        </div>
+        <div className="filter-row">
+          <span className="filter-label">Sort</span>
+          <div className="filter-tabs sort-tabs">
+            {SORTS.map(s => (
+              <button key={s} className={`stamp-tab small ${sort === s ? "active" : ""}`} onClick={() => setSort(s)}>{s}</button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECT GRID */}
+      <section className="projects">
+        {sort === "Phase" ? (
+          PHASES.map(ph => {
+            const list = grouped[ph.id] || [];
+            if (list.length === 0) return null;
+            return (
+              <div key={ph.id} className="phase-group">
+                <PhaseDivider phase={ph} count={list.length} />
+                <div className="project-grid">
+                  {list.map(p => (
+                    <ProjectCard key={p.id} p={p} expanded={!!expanded[p.id]}
+                      onToggle={() => setExpanded(e => ({ ...e, [p.id]: !e[p.id] }))} />
+                  ))}
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <div className="project-grid">
+            {filtered.map(p => (
+              <ProjectCard key={p.id} p={p} expanded={!!expanded[p.id]}
+                onToggle={() => setExpanded(e => ({ ...e, [p.id]: !e[p.id] }))} />
+            ))}
+          </div>
+        )}
+        {filtered.length === 0 && (
+          <div className="empty-state">
+            <Ornament width={120} />
+            <p>No projects match this view.</p>
+            <button onClick={() => { setZone(null); setStatus("All"); }}>Clear filters</button>
+          </div>
+        )}
+      </section>
+
+      {/* CONTRACTOR ROLODEX */}
+      <section className="rolodex-section">
+        <button className="rolodex-toggle" onClick={() => setRolodexOpen(o => !o)}>
+          <span>Open Contractor Files</span>
+          <span className="caret">{rolodexOpen ? "▴" : "▾"}</span>
+        </button>
+        {rolodexOpen && (
+          <div className="rolodex">
+            {contractors.map(c => (
+              <div key={c.name} className={`calling-card ${c.alert ? "alert" : ""}`}>
+                <div className="card-corner tl" /><div className="card-corner tr" />
+                <div className="card-corner bl" /><div className="card-corner br" />
+                <div className="card-eyebrow">&mdash; Calling Card &mdash;</div>
+                <div className="card-name">{c.name}</div>
+                <div className="card-spec">{c.specialty}</div>
+                <Ornament width={100} />
+                <div className="card-foot">
+                  <div className="card-paid">
+                    <span className="card-paid-label">paid to date</span>
+                    <span className="card-paid-val num">{fmtMoney(c.paid)}</span>
+                  </div>
+                  <div className="card-note">{c.note}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* COLOPHON */}
+      <footer className="colophon">
+        <Ornament width={260} />
+        <p>
+          Compiled with care for the residents of 3685 Pershing Avenue &middot;
+          A Spanish Revival bungalow in the North Park district of San Diego, California &middot;
+          One hundred and two years young.
+        </p>
+        <div className="colophon-meta">
+          <span>3 BED &middot; 2 BATH &middot; 1,190 SQ FT &middot; 7,501 SQ FT LOT</span>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Dashboard />);
+  </script>
+</body>
+</html>
