@@ -8,13 +8,240 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&family=IM+Fell+English+SC&display=swap');
 
+/* ── TABS ───────────────────────────────────────────── */
+.tab-bar {
+  display: flex; gap: 0;
+  margin: 0 0 24px;
+  border-bottom: 2px solid #827A60;
+}
+.tab {
+  flex: 1;
+  background: rgba(237,232,220,0.5);
+  border: 1px solid #B5AB8A;
+  border-bottom: none;
+  padding: 14px 22px 12px;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Playfair Display', serif;
+  color: #5C4A38;
+  position: relative;
+  transition: all 0.15s ease;
+  display: flex; align-items: baseline; gap: 12px;
+  border-radius: 4px 4px 0 0;
+  margin-right: -1px;
+}
+.tab:hover { background: #E8DFC4; color: #2A1F15; }
+.tab.active {
+  background: #DDD3BC;
+  color: #1E3A52;
+  border-color: #827A60;
+  border-width: 1.5px;
+  box-shadow: 0 -2px 0 #9C7A52 inset;
+  z-index: 2;
+}
+.tab.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: #DDD3BC;
+}
+.tab-num {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 13px; letter-spacing: 2px;
+  color: #9C7A52;
+  font-weight: 700;
+}
+.tab-label {
+  font-size: 19px; font-weight: 700;
+  letter-spacing: -0.2px;
+}
+.tab-sub {
+  font-style: italic;
+  font-size: 13px;
+  color: #827A60;
+  margin-left: auto;
+}
+
+/* ── GLANCE VIEW ────────────────────────────────────── */
+.glance {
+  background: #DDD3BC;
+  border: 1px solid #B5AB8A;
+  padding: 24px;
+  margin-bottom: 36px;
+  box-shadow: 2px 3px 0 rgba(196,168,130,0.4);
+}
+.glance-stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 2px double #827A60;
+}
+.gstat {
+  background: #EBE4D2;
+  border: 1px solid #B5AB8A;
+  padding: 12px 14px;
+  text-align: center;
+}
+.gstat-label {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px; letter-spacing: 2px;
+  color: #827A60;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+.gstat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 700;
+  color: #1E3A52;
+  line-height: 1;
+}
+.gstat.alert { background: #D9CFB0; border-color: #8B5A1F; }
+.gstat.alert .gstat-value { color: #8B2020; }
+.gstat.done { background: #E5EBDC; border-color: #9CAA88; }
+.gstat.done .gstat-value { color: #1E3A52; }
+.gstat.hold { opacity: 0.6; }
+.gstat.money .gstat-value { color: #9C7A52; font-size: 24px; padding-top: 6px; }
+
+.glance-group { margin-bottom: 28px; }
+.glance-group:last-child { margin-bottom: 0; }
+
+.glance-group-head {
+  display: flex; align-items: center; gap: 12px;
+  padding-bottom: 8px;
+  margin-bottom: 6px;
+  border-bottom: 1.5px solid #827A60;
+}
+.glance-dot {
+  width: 14px; height: 14px;
+  border: 2px solid #5C4A38;
+}
+.glance-dot.tone-amber { background: #B89860; border-color: #8B5A1F; }
+.glance-dot.tone-terra { background: #9C7A52; border-color: #5E4528; }
+.glance-dot.tone-slate { background: #2F5468; border-color: #1E3A52; border-style: dashed; background: transparent; }
+.glance-dot.tone-green { background: #1E3A52; border-color: #13283A; }
+.glance-dot.tone-red   { background: #8B2020; border-color: #5A1212; }
+
+.glance-group-title {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  color: #2A1F15;
+  letter-spacing: -0.2px;
+}
+.glance-group-count {
+  margin-left: auto;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 600;
+  background: #5C4A38; color: #EBE4D2;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 1px;
+}
+
+.glance-table {
+  display: flex; flex-direction: column;
+}
+.glance-row {
+  display: grid;
+  grid-template-columns: 2.4fr 1.1fr 1.4fr 1.4fr 0.9fr 1fr;
+  gap: 12px;
+  padding: 10px 8px;
+  align-items: baseline;
+  border-bottom: 1px dashed #B5AB8A;
+  font-family: 'Source Serif 4', serif;
+  font-size: 14px;
+  color: #2A1F15;
+}
+.glance-row:last-child { border-bottom: none; }
+.glance-row.glance-head-row {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: #827A60;
+  border-bottom: 1px solid #827A60;
+  padding: 8px;
+}
+.glance-row .right { text-align: right; }
+.glance-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #1E3A52;
+  line-height: 1.25;
+}
+.glance-phone {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  color: #8B2020;
+  font-weight: 500;
+}
+.glance-area {
+  font-style: italic;
+  font-size: 13px;
+  color: #5C4A38;
+}
+.glance-contractor {
+  font-size: 13.5px;
+  color: #3A2E1E;
+}
+.diy-mini {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 10px; letter-spacing: 2px;
+  background: #1E3A52; color: #EBE4D2;
+  padding: 2px 8px;
+}
+.glance-time { font-size: 13px; color: #5C4A38; }
+.glance-money {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  color: #2A1F15;
+  font-weight: 500;
+}
+.glance-pct {
+  color: #827A60;
+  font-size: 11.5px;
+  margin-left: 2px;
+}
+.paid-full {
+  color: #1E3A52;
+  font-weight: 700;
+}
+
+/* Tone tints on group container */
+.glance-group.tone-amber .glance-group-title { color: #8B5A1F; }
+.glance-group.tone-terra .glance-group-title { color: #5E4528; }
+.glance-group.tone-green .glance-group-title { color: #1E3A52; }
+.glance-group.tone-red   .glance-group-title { color: #8B2020; }
+.glance-group.tone-red   .glance-row { opacity: 0.65; }
+
+@media (max-width: 900px) {
+  .glance-stats { grid-template-columns: repeat(2, 1fr); }
+  .glance-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 6px; }
+  .glance-row.glance-head-row { display: none; }
+  .glance-row .right { text-align: left; }
+  .glance-row > div::before {
+    content: attr(data-l);
+    display: block;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 9px; letter-spacing: 2px;
+    color: #827A60;
+  }
+  .tab-bar { flex-direction: column; gap: 4px; border-bottom: none; }
+  .tab { border-radius: 4px; }
+  .tab-sub { display: none; }
+}
+
 /* ── BASE ───────────────────────────────────────────── */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
   font-family: 'Source Serif 4', 'Georgia', serif;
   color: #2A1F15;
-  background: #F5F0E8;
+  background: #EBE4D2;
   /* linen / paper noise */
   background-image:
     radial-gradient(circle at 20% 30%, rgba(196,168,130,0.06) 0, transparent 40%),
@@ -30,13 +257,13 @@ body {
 .num { font-family: 'Inter', sans-serif; font-feature-settings: "tnum" 1, "lnum" 1; }
 
 /* ── MASTHEAD ───────────────────────────────────────── */
-.masthead { padding-bottom: 18px; border-bottom: 1px solid #C4A882; margin-bottom: 26px; }
+.masthead { padding-bottom: 18px; border-bottom: 1px solid #B5AB8A; margin-bottom: 26px; }
 .masthead-top {
   display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap;
 }
 .eyebrow {
   font-family: 'IM Fell English SC', 'Playfair Display', serif;
-  font-size: 12px; letter-spacing: 4px; color: #8B7355;
+  font-size: 12px; letter-spacing: 4px; color: #827A60;
   margin-bottom: 4px;
 }
 .address {
@@ -45,14 +272,14 @@ body {
   font-size: clamp(40px, 6vw, 76px);
   line-height: 0.96;
   margin: 0;
-  color: #2D4A2D;
+  color: #1E3A52;
   letter-spacing: -1px;
 }
 .subaddress {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-size: 17px;
-  color: #5C3D2E;
+  color: #5C4A38;
   margin-top: 6px;
   letter-spacing: 0.5px;
 }
@@ -60,18 +287,18 @@ body {
   display: flex; align-items: flex-end; gap: 18px;
 }
 .date-stamp {
-  border: 1px dashed #8B7355;
+  border: 1px dashed #827A60;
   padding: 8px 14px;
   background: rgba(237,232,220,0.6);
   text-align: right;
 }
 .date-label {
   font-family: 'IM Fell English SC', serif;
-  font-size: 10px; letter-spacing: 3px; color: #8B7355;
+  font-size: 10px; letter-spacing: 3px; color: #827A60;
 }
 .date-value {
   font-family: 'Playfair Display', serif;
-  font-size: 18px; color: #2D4A2D; font-weight: 600;
+  font-size: 18px; color: #1E3A52; font-weight: 600;
 }
 .print-seal {
   background: none; border: none; cursor: pointer; padding: 0;
@@ -88,14 +315,14 @@ body {
   font-size: 15px; color: #2A1F15;
   justify-content: center;
 }
-.pulse-line b { font-weight: 700; color: #2D4A2D; font-size: 16px; }
-.dot-sep { color: #8B7355; padding: 0 2px; }
+.pulse-line b { font-weight: 700; color: #1E3A52; font-size: 16px; }
+.dot-sep { color: #827A60; padding: 0 2px; }
 
 /* ── ALERT NOTICE ───────────────────────────────────── */
 .alert-notice {
   position: relative;
   display: flex; align-items: center; gap: 18px;
-  background: linear-gradient(180deg, #F2DAA8, #EAC988);
+  background: linear-gradient(180deg, #D9CFB0, #C5B98F);
   border: 1.5px solid #8B5A1F;
   border-left: 8px solid #8B2020;
   padding: 16px 22px 16px 18px;
@@ -118,12 +345,12 @@ body {
 .notice-text { color: #3A1010; font-size: 15px; line-height: 1.5; }
 .phone-num {
   font-family: 'Inter', sans-serif; font-weight: 600;
-  background: #8B2020; color: #F5F0E8; padding: 1px 6px;
+  background: #8B2020; color: #EBE4D2; padding: 1px 6px;
   letter-spacing: 0.5px;
 }
 .telegram-stripe {
   position: absolute; left: 0; right: 0; bottom: -6px; height: 6px;
-  background: repeating-linear-gradient(45deg, #8B2020 0 8px, #F5F0E8 8px 16px);
+  background: repeating-linear-gradient(45deg, #8B2020 0 8px, #EBE4D2 8px 16px);
   opacity: 0.5;
 }
 
@@ -134,21 +361,21 @@ body {
 }
 .section-title {
   font-family: 'Playfair Display', serif;
-  font-weight: 700; font-size: 28px; color: #2D4A2D;
+  font-weight: 700; font-size: 28px; color: #1E3A52;
   margin: 0; letter-spacing: -0.3px;
 }
 .section-sub {
   font-family: 'Playfair Display', serif;
-  font-style: italic; color: #5C3D2E; font-size: 15px;
+  font-style: italic; color: #5C4A38; font-size: 15px;
 }
 
 /* ── CORKBOARD ─────────────────────────────────────── */
 .corkboard { margin-bottom: 36px; }
 .board-surface {
   background:
-    radial-gradient(circle at 30% 20%, #B88958 0, #9C6D3F 60%, #7A4F26 100%);
+    radial-gradient(circle at 30% 20%, #8B7D60 0, #6E664E 60%, #544F3C 100%);
   background-blend-mode: multiply;
-  border: 6px solid #3A2415;
+  border: 6px solid #2E2418;
   border-radius: 4px;
   padding: 36px 24px 28px;
   position: relative;
@@ -165,7 +392,7 @@ body {
   position: relative; z-index: 1;
 }
 .pinned-note {
-  background: #F4E9CC;
+  background: #E8DFC4;
   padding: 18px 16px 14px;
   position: relative;
   box-shadow: 2px 4px 8px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.05) inset;
@@ -174,7 +401,7 @@ body {
 .pin {
   position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
   width: 14px; height: 14px; border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #E55B3A, #8B2020 70%);
+  background: radial-gradient(circle at 30% 30%, #B89860, #8B2020 70%);
   box-shadow: 1px 2px 2px rgba(0,0,0,0.4);
 }
 .pin-clip { display: none; }
@@ -182,18 +409,18 @@ body {
   font-family: 'Caveat', cursive;
   font-size: 24px; font-weight: 700;
   margin: 4px 0 8px;
-  color: #5C3D2E;
+  color: #5C4A38;
   line-height: 1;
 }
-.note-body { font-size: 14px; color: #3A2818; margin: 0 0 10px; }
+.note-body { font-size: 14px; color: #3A2E1E; margin: 0 0 10px; }
 .note-meta {
   display: flex; justify-content: space-between; align-items: baseline;
-  border-top: 1px dashed #A88859;
+  border-top: 1px dashed #998B6A;
   padding-top: 6px;
   font-size: 12px;
 }
-.note-cost { font-family: 'Inter', sans-serif; font-weight: 600; color: #2D4A2D; }
-.note-area { font-family: 'IM Fell English SC', serif; letter-spacing: 2px; color: #8B7355; font-size: 10px; }
+.note-cost { font-family: 'Inter', sans-serif; font-weight: 600; color: #1E3A52; }
+.note-area { font-family: 'IM Fell English SC', serif; letter-spacing: 2px; color: #827A60; font-size: 10px; }
 .note-warn {
   margin-top: 6px;
   font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
@@ -204,8 +431,8 @@ body {
 
 /* ── LEDGER ─────────────────────────────────────────── */
 .ledger {
-  background: #EDE8DC;
-  border: 1px solid #C4A882;
+  background: #DDD3BC;
+  border: 1px solid #B5AB8A;
   padding: 24px 28px;
   margin-bottom: 36px;
   position: relative;
@@ -220,30 +447,30 @@ body {
 .ledger-totals {
   display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
   align-items: center;
-  border-top: 2px double #8B7355;
-  border-bottom: 2px double #8B7355;
+  border-top: 2px double #827A60;
+  border-bottom: 2px double #827A60;
   padding: 18px 0;
   margin-bottom: 18px;
 }
 .ledger-col { text-align: center; }
 .ledger-label {
   font-family: 'IM Fell English SC', serif;
-  font-size: 11px; letter-spacing: 3px; color: #8B7355;
+  font-size: 11px; letter-spacing: 3px; color: #827A60;
   margin-bottom: 4px;
 }
 .ledger-num {
   font-family: 'Playfair Display', serif;
-  font-size: 38px; font-weight: 700; color: #2D4A2D;
+  font-size: 38px; font-weight: 700; color: #1E3A52;
   line-height: 1;
   font-feature-settings: "tnum" 1, "lnum" 1;
 }
-.ledger-num.terra { color: #C4623A; }
+.ledger-num.terra { color: #9C7A52; }
 .ledger-sub {
   font-family: 'Source Serif 4', serif; font-style: italic;
-  font-size: 12px; color: #8B7355; margin-top: 4px;
+  font-size: 12px; color: #827A60; margin-top: 4px;
 }
 .ledger-divider {
-  width: 1px; height: 50px; background: #C4A882; align-self: center;
+  width: 1px; height: 50px; background: #B5AB8A; align-self: center;
 }
 
 .ledger-categories { display: flex; flex-direction: column; gap: 10px; }
@@ -266,15 +493,15 @@ body {
   font-family: 'Inter', sans-serif; font-size: 13px;
   color: #2A1F15; text-align: right;
 }
-.cat-fig .num { font-weight: 600; color: #2D4A2D; }
-.cat-of { color: #8B7355; }
+.cat-fig .num { font-weight: 600; color: #1E3A52; }
+.cat-of { color: #827A60; }
 .cat-row.on-hold-row { opacity: 0.55; }
 
 /* ── HOUSE SECTION ──────────────────────────────────── */
 .house-section { margin-bottom: 32px; }
 .house-frame {
-  background: #EDE8DC;
-  border: 1px solid #C4A882;
+  background: #DDD3BC;
+  border: 1px solid #B5AB8A;
   padding: 20px;
   box-shadow: inset 0 0 0 1px rgba(244,233,204,0.8), 2px 3px 0 rgba(196,168,130,0.4);
 }
@@ -287,7 +514,7 @@ body {
 }
 .zone-hot.zone-active {
   fill: rgba(212,168,83,0.32);
-  stroke: #D4A853;
+  stroke: #B89860;
   stroke-width: 2;
   stroke-dasharray: 6 4;
 }
@@ -298,8 +525,8 @@ body {
 .zone-tile {
   font-family: 'Playfair Display', serif;
   font-size: 13px; font-weight: 600;
-  background: #EDE8DC;
-  border: 1.5px solid #8B7355;
+  background: #DDD3BC;
+  border: 1.5px solid #827A60;
   padding: 10px 16px;
   cursor: pointer;
   letter-spacing: 0.5px;
@@ -307,63 +534,63 @@ body {
   display: inline-flex; align-items: center; gap: 10px;
   transition: all 0.15s;
 }
-.zone-tile:hover { background: #F4E9CC; }
+.zone-tile:hover { background: #E8DFC4; }
 .zone-tile.active {
-  background: #2D4A2D; color: #F5F0E8; border-color: #1F3320;
-  box-shadow: 2px 2px 0 #D4A853;
+  background: #1E3A52; color: #EBE4D2; border-color: #13283A;
+  box-shadow: 2px 2px 0 #B89860;
 }
 .zone-tile.clear { border-style: dashed; }
 .tile-mark {
   width: 8px; height: 8px; border-radius: 50%;
-  background: #C4623A; display: inline-block;
+  background: #9C7A52; display: inline-block;
 }
-.zone-tile.active .tile-mark { background: #D4A853; }
+.zone-tile.active .tile-mark { background: #B89860; }
 
 .filter-readout {
   margin-top: 16px;
   font-family: 'Playfair Display', serif;
-  font-size: 15px; color: #5C3D2E;
+  font-size: 15px; color: #5C4A38;
   text-align: center;
 }
-.filter-readout i { color: #2D4A2D; font-weight: 600; }
+.filter-readout i { color: #1E3A52; font-weight: 600; }
 
 /* ── FILTER + SORT BAR ──────────────────────────────── */
 .filter-bar {
   display: flex; flex-direction: column; gap: 10px;
   padding: 18px 22px;
   margin-bottom: 28px;
-  border-top: 1px solid #C4A882;
-  border-bottom: 1px solid #C4A882;
+  border-top: 1px solid #B5AB8A;
+  border-bottom: 1px solid #B5AB8A;
   background: rgba(237,232,220,0.4);
 }
 .filter-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .filter-label {
   font-family: 'IM Fell English SC', serif;
-  font-size: 12px; letter-spacing: 3px; color: #5C3D2E;
+  font-size: 12px; letter-spacing: 3px; color: #5C4A38;
   min-width: 60px;
 }
 .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .stamp-tab {
   font-family: 'Playfair Display', serif;
   font-size: 12px; font-weight: 600;
-  background: #F5F0E8;
-  border: 1.5px dashed #8B7355;
+  background: #EBE4D2;
+  border: 1.5px dashed #827A60;
   padding: 6px 14px;
   cursor: pointer;
   letter-spacing: 1.5px;
-  color: #5C3D2E;
+  color: #5C4A38;
   text-transform: uppercase;
   transition: all 0.15s;
 }
-.stamp-tab:hover { background: #F4E9CC; }
+.stamp-tab:hover { background: #E8DFC4; }
 .stamp-tab.active {
-  background: #C4623A; color: #F5F0E8; border-color: #8B3A1F;
+  background: #9C7A52; color: #EBE4D2; border-color: #5E4528;
   border-style: solid;
   transform: rotate(-1deg);
   box-shadow: 2px 2px 0 rgba(92,61,46,0.3);
 }
 .stamp-tab.small { font-size: 11px; padding: 5px 12px; }
-.sort-tabs .stamp-tab.active { background: #2D4A2D; border-color: #1F3320; transform: rotate(1deg); }
+.sort-tabs .stamp-tab.active { background: #1E3A52; border-color: #13283A; transform: rotate(1deg); }
 
 /* ── PROJECT GRID ───────────────────────────────────── */
 .phase-divider {
@@ -372,8 +599,8 @@ body {
 }
 .phase-rule {
   flex: 1; height: 0;
-  border-top: 1px solid #8B7355;
-  border-bottom: 1px solid #8B7355;
+  border-top: 1px solid #827A60;
+  border-bottom: 1px solid #827A60;
   padding-top: 2px;
 }
 .phase-text {
@@ -382,17 +609,17 @@ body {
   font-size: 13px;
 }
 .phase-label {
-  font-size: 22px; font-weight: 700; color: #2D4A2D;
+  font-size: 22px; font-weight: 700; color: #1E3A52;
   font-style: italic;
 }
 .phase-roman {
   font-family: 'IM Fell English SC', serif;
-  letter-spacing: 3px; color: #8B7355; font-size: 14px;
+  letter-spacing: 3px; color: #827A60; font-size: 14px;
 }
-.phase-sub { font-style: italic; color: #5C3D2E; font-size: 14px; }
+.phase-sub { font-style: italic; color: #5C4A38; font-size: 14px; }
 .phase-count {
   font-family: 'Inter', sans-serif; font-size: 11px;
-  color: #8B7355; letter-spacing: 1px;
+  color: #827A60; letter-spacing: 1px;
 }
 
 .project-grid {
@@ -401,8 +628,8 @@ body {
 
 .project-card {
   position: relative;
-  background: #EDE8DC;
-  border: 1px solid #C4A882;
+  background: #DDD3BC;
+  border: 1px solid #B5AB8A;
   padding: 18px 20px 16px;
   cursor: pointer;
   box-shadow: 2px 3px 0 rgba(196,168,130,0.4), 0 0 0 1px rgba(244,233,204,0.6) inset;
@@ -418,12 +645,12 @@ body {
   background: #E5DECD;
 }
 .project-card.completed {
-  background: linear-gradient(180deg, #E5EBDC, #EDE8DC);
+  background: linear-gradient(180deg, #E5EBDC, #DDD3BC);
   border-color: #9CAA88;
 }
 .project-card.action {
-  border-color: #D4A853;
-  box-shadow: 0 0 0 2px #D4A853, 2px 3px 0 rgba(196,168,130,0.4);
+  border-color: #B89860;
+  box-shadow: 0 0 0 2px #B89860, 2px 3px 0 rgba(196,168,130,0.4);
   animation: pulseAction 2.5s ease-in-out infinite;
 }
 @keyframes pulseAction {
@@ -453,11 +680,11 @@ body {
 .area-tag {
   font-family: 'IM Fell English SC', serif;
   font-size: 10px; letter-spacing: 2.5px;
-  background: #F5F0E8;
-  border: 1px solid #8B7355;
+  background: #EBE4D2;
+  border: 1px solid #827A60;
   padding: 3px 9px;
   border-radius: 999px;
-  color: #5C3D2E;
+  color: #5C4A38;
   white-space: nowrap;
 }
 
@@ -472,23 +699,23 @@ body {
 .contractor-line {
   display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
   font-family: 'Source Serif 4', serif;
-  font-size: 13px; color: #5C3D2E;
+  font-size: 13px; color: #5C4A38;
   margin-bottom: 12px;
 }
 .contractor-chip {
   display: inline-flex; align-items: center; gap: 6px;
-  background: #F5F0E8;
-  border: 1px solid #C4A882;
+  background: #EBE4D2;
+  border: 1px solid #B5AB8A;
   padding: 3px 10px;
   font-style: italic;
 }
 .contractor-chip .dot {
-  width: 6px; height: 6px; border-radius: 50%; background: #4A6274;
+  width: 6px; height: 6px; border-radius: 50%; background: #2F5468;
 }
 .diy-tag {
   font-family: 'IM Fell English SC', serif;
   font-size: 10px; letter-spacing: 3px;
-  background: #2D4A2D; color: #F5F0E8;
+  background: #1E3A52; color: #EBE4D2;
   padding: 3px 10px;
 }
 .phone { font-family: 'Inter', sans-serif; font-size: 11px; }
@@ -496,11 +723,11 @@ body {
 .timeline-row {
   display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
   padding-bottom: 8px;
-  border-bottom: 1px dashed #C4A882;
+  border-bottom: 1px dashed #B5AB8A;
 }
 .timeline-label {
   font-family: 'IM Fell English SC', serif;
-  font-size: 10px; letter-spacing: 2.5px; color: #8B7355;
+  font-size: 10px; letter-spacing: 2.5px; color: #827A60;
 }
 .timeline-value {
   font-family: 'Source Serif 4', serif;
@@ -513,35 +740,35 @@ body {
 }
 .money-label {
   font-family: 'IM Fell English SC', serif;
-  font-size: 10px; letter-spacing: 2.5px; color: #8B7355;
+  font-size: 10px; letter-spacing: 2.5px; color: #827A60;
 }
 .money-value {
   font-family: 'Inter', sans-serif; font-weight: 600;
-  font-size: 18px; color: #2D4A2D;
+  font-size: 18px; color: #1E3A52;
   font-feature-settings: "tnum" 1, "lnum" 1;
 }
 .money-note {
   font-family: 'Source Serif 4', serif; font-style: italic;
-  font-size: 11px; color: #8B7355;
+  font-size: 11px; color: #827A60;
 }
 
 .notes-toggle {
   margin-top: 12px;
   background: none; border: none; cursor: pointer;
   font-family: 'Playfair Display', serif;
-  font-size: 13px; color: #5C3D2E; font-style: italic;
+  font-size: 13px; color: #5C4A38; font-style: italic;
   padding: 0;
 }
-.notes-toggle:hover { color: #C4623A; }
+.notes-toggle:hover { color: #9C7A52; }
 
 .notes-body {
   margin-top: 10px;
   padding: 12px 14px;
   background: rgba(245,240,232,0.7);
-  border-left: 2px solid #C4623A;
+  border-left: 2px solid #9C7A52;
   font-family: 'Source Serif 4', serif;
   font-size: 13.5px;
-  color: #3A2818;
+  color: #3A2E1E;
 }
 .notes-body p { margin: 0 0 12px; }
 
@@ -551,13 +778,13 @@ body {
 }
 .polaroid-frame {
   width: 80%; aspect-ratio: 4 / 3;
-  background: #F5F0E8;
-  border: 1.5px dashed #8B7355;
+  background: #EBE4D2;
+  border: 1.5px dashed #827A60;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 6px;
-  color: #8B7355;
+  color: #827A60;
   padding: 14px;
-  box-shadow: 0 0 0 6px #EDE8DC, 0 0 0 7px #C4A882;
+  box-shadow: 0 0 0 6px #DDD3BC, 0 0 0 7px #B5AB8A;
 }
 .polaroid-icon { font-size: 24px; opacity: 0.5; }
 .polaroid-text {
@@ -566,19 +793,19 @@ body {
 }
 .polaroid-caption {
   font-family: 'Caveat', cursive;
-  font-size: 15px; color: #5C3D2E;
+  font-size: 15px; color: #5C4A38;
   margin-top: 8px;
 }
 
 .empty-state {
   text-align: center; padding: 40px;
   font-family: 'Playfair Display', serif;
-  color: #5C3D2E;
+  color: #5C4A38;
 }
 .empty-state button {
   margin-top: 12px;
   font-family: 'Playfair Display', serif;
-  background: #2D4A2D; color: #F5F0E8;
+  background: #1E3A52; color: #EBE4D2;
   border: none; padding: 8px 16px; cursor: pointer;
   letter-spacing: 1px;
 }
@@ -589,7 +816,7 @@ body {
   width: 100%;
   font-family: 'Playfair Display', serif;
   font-size: 18px; font-weight: 600;
-  background: #5C3D2E; color: #F5F0E8;
+  background: #5C4A38; color: #EBE4D2;
   border: none; padding: 14px 24px;
   cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
@@ -597,7 +824,7 @@ body {
   border-radius: 2px;
   box-shadow: 2px 3px 0 rgba(92,61,46,0.4);
 }
-.rolodex-toggle:hover { background: #4A2F1C; }
+.rolodex-toggle:hover { background: #3A2D1E; }
 .caret { font-size: 14px; }
 
 .rolodex {
@@ -607,8 +834,8 @@ body {
 }
 .calling-card {
   position: relative;
-  background: #F4E9CC;
-  border: 1px solid #C4A882;
+  background: #E8DFC4;
+  border: 1px solid #B5AB8A;
   padding: 20px;
   text-align: center;
   box-shadow: 2px 3px 0 rgba(196,168,130,0.5);
@@ -616,13 +843,13 @@ body {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
 }
 .calling-card.alert {
-  background: #F2DAA8;
+  background: #D9CFB0;
   border-color: #8B2020;
   border-width: 1.5px;
 }
 .card-corner {
   position: absolute; width: 14px; height: 14px;
-  border: 1.5px solid #8B7355;
+  border: 1.5px solid #827A60;
 }
 .card-corner.tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
 .card-corner.tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
@@ -630,7 +857,7 @@ body {
 .card-corner.br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
 .card-eyebrow {
   font-family: 'IM Fell English SC', serif;
-  font-size: 10px; letter-spacing: 3px; color: #8B7355;
+  font-size: 10px; letter-spacing: 3px; color: #827A60;
   margin-top: 4px;
 }
 .card-name {
@@ -640,7 +867,7 @@ body {
   line-height: 1.1;
 }
 .card-spec {
-  font-style: italic; font-size: 13px; color: #5C3D2E;
+  font-style: italic; font-size: 13px; color: #5C4A38;
   margin-bottom: 6px;
 }
 .card-foot {
@@ -650,14 +877,14 @@ body {
 .card-paid { display: flex; align-items: baseline; gap: 8px; }
 .card-paid-label {
   font-family: 'IM Fell English SC', serif;
-  font-size: 9px; letter-spacing: 2px; color: #8B7355;
+  font-size: 9px; letter-spacing: 2px; color: #827A60;
 }
 .card-paid-val {
-  font-size: 18px; font-weight: 600; color: #2D4A2D;
+  font-size: 18px; font-weight: 600; color: #1E3A52;
 }
 .card-note {
-  font-size: 12px; color: #3A2818; font-style: italic;
-  border-top: 1px dashed #C4A882; padding-top: 6px; width: 80%;
+  font-size: 12px; color: #3A2E1E; font-style: italic;
+  border-top: 1px dashed #B5AB8A; padding-top: 6px; width: 80%;
 }
 .calling-card.alert .card-note { color: #8B2020; font-weight: 600; font-style: normal; }
 
@@ -666,19 +893,19 @@ body {
   margin-top: 60px;
   text-align: center;
   padding: 24px 20px;
-  border-top: 2px double #8B7355;
-  border-bottom: 2px double #8B7355;
+  border-top: 2px double #827A60;
+  border-bottom: 2px double #827A60;
 }
 .colophon p {
   font-family: 'Playfair Display', serif;
   font-style: italic; font-size: 14px;
-  color: #5C3D2E;
+  color: #5C4A38;
   max-width: 640px; margin: 14px auto 8px;
   line-height: 1.6;
 }
 .colophon-meta {
   font-family: 'IM Fell English SC', serif;
-  font-size: 11px; letter-spacing: 4px; color: #8B7355;
+  font-size: 11px; letter-spacing: 4px; color: #827A60;
 }
 .colophon > svg { margin: 0 auto; }
 
@@ -705,7 +932,7 @@ body {
   .project-grid { grid-template-columns: 1fr !important; }
   .project-card { break-inside: avoid; box-shadow: none; border: 1px solid #999; }
   .corkboard, .ledger, .house-section { break-inside: avoid; }
-  .board-surface { background: #F5F0E8; box-shadow: none; border: 1px solid #999; }
+  .board-surface { background: #EBE4D2; box-shadow: none; border: 1px solid #999; }
   .pinned-note { box-shadow: none; transform: none !important; }
   .colophon { page-break-before: avoid; }
   .alert-notice { box-shadow: none; background: #fff; border: 2px solid #8B2020; }
@@ -721,7 +948,6 @@ body {
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-  <!-- data.jsx — project data, contractor list, zone definitions -->
   <script type="text/babel">
 // Project data for 3685 Pershing Ave dashboard
 const PROJECTS = [
@@ -771,49 +997,6 @@ const PROJECTS = [
   },
 
   // ── SUMMER 2026 ──────────────────────────────────────────
-  {
-    id: "laundry-floor",
-    name: "Laundry Room New Floor (LVP)",
-    area: "Laundry",
-    zone: "interior",
-    contractor: "Home Depot",
-    status: "PLANNED",
-    estimated: 1000,
-    paid: 0,
-    timeline: "Before July 4, 2026",
-    phase: "summer",
-    notes: "Remove washer/dryer, install LVP. Future plan includes stackable washer/dryer and new sink."
-  },
-  {
-    id: "floor-refinish-current",
-    name: "Hardwood Floor Refinish — Full Interior",
-    area: "Whole House",
-    zone: "interior",
-    contractor: "Ismael",
-    status: "IN PROGRESS",
-    estimated: 7360,
-    paid: 500,
-    paidNote: "deposit paid June 12",
-    timeline: "July 7, 2026",
-    timelineStart: "Jul 7",
-    timelineEnd: "Jul 14",
-    phase: "summer",
-    notes: "White oak and Douglas fir. $500 deposit paid June 12. Furniture must be fully removed July 4–6 prior to start."
-  },
-  {
-    id: "paint-current",
-    name: "Interior Wall & Baseboard Painting",
-    area: "Whole House",
-    zone: "interior",
-    contractor: "Henry Chiang",
-    status: "IN PROGRESS",
-    estimated: 3300,
-    paid: 340,
-    paidNote: "10% deposit paid June 6",
-    timeline: "July 12, 2026 (after floor refinish)",
-    phase: "summer",
-    notes: "Revised estimate received and signed June 4. 10% deposit paid. Ceilings would be additional $4,400 (local SD quote $6,800 walls only)."
-  },
   {
     id: "trim",
     name: "Tree & Shrub Trimming",
@@ -869,19 +1052,6 @@ const PROJECTS = [
     notes: "Amazon / Mom."
   },
   {
-    id: "front-door",
-    name: "Front Door Refinish",
-    area: "Front Porch",
-    zone: "porch",
-    contractor: "William VanDusen",
-    status: "PLANNED",
-    estimated: null,
-    paid: 0,
-    timeline: "Follow up",
-    phase: "summer",
-    notes: "Scheduled Jan 7 — status unclear, follow up to confirm completion or reschedule."
-  },
-  {
     id: "porch-bench",
     name: "Front Porch Bench Refinish",
     area: "Front Porch",
@@ -915,7 +1085,7 @@ const PROJECTS = [
   // ── COMPLETED ────────────────────────────────────────────
   {
     id: "floor-done",
-    name: "Hardwood Floor Refinish",
+    name: "Hardwood Floor Refinish — Full Interior",
     area: "Whole House",
     zone: "interior",
     contractor: "Ismael",
@@ -924,7 +1094,46 @@ const PROJECTS = [
     paid: 7360,
     paidNote: "PAID IN FULL",
     phase: "done",
-    notes: "White oak and Douglas fir. Complete."
+    notes: "White oak and Douglas fir. Refinished and complete — Ismael paid in full. ✓"
+  },
+  {
+    id: "laundry-floor-done",
+    name: "Laundry Room New Floor (LVP)",
+    area: "Laundry",
+    zone: "interior",
+    contractor: "Home Depot",
+    status: "COMPLETED",
+    estimated: 1000,
+    paid: 1000,
+    paidNote: "PAID IN FULL",
+    phase: "done",
+    notes: "LVP installed. Future plan still includes stackable washer/dryer and new sink."
+  },
+  {
+    id: "front-door-done",
+    name: "Front Door Refinish",
+    area: "Front Porch",
+    zone: "porch",
+    contractor: "William VanDusen",
+    status: "COMPLETED",
+    estimated: 4000,
+    paid: 4000,
+    paidNote: "PAID IN FULL",
+    phase: "done",
+    notes: "Front door stripped, repaired and refinished. Paid in full $4,000."
+  },
+  {
+    id: "dr-sash",
+    name: "Dining Room Sash Restoration",
+    area: "Dining Room",
+    zone: "dining",
+    contractor: "DIY",
+    isDIY: true,
+    status: "COMPLETED",
+    estimated: 0,
+    paid: 0,
+    phase: "done",
+    notes: "Dining room sash restored — stripped, reglazed and reinstalled. Complete."
   },
   {
     id: "paint-done",
@@ -937,7 +1146,7 @@ const PROJECTS = [
     paid: 3300,
     paidNote: "PAID IN FULL",
     phase: "done",
-    notes: "Complete."
+    notes: "Revised estimate signed June 4. Walls and baseboards complete throughout the house. Paid in full."
   },
   {
     id: "dr-window",
@@ -996,13 +1205,13 @@ const PROJECTS = [
 
 const CONTRACTORS = [
   { name: "Heartwood Restoration", specialty: "Windows & Exterior Wood", paid: 450, note: "Starting end of May 2026" },
-  { name: "Ismael", specialty: "Hardwood Floor Refinishing", paid: 500, note: "Deposit paid · July 7 start" },
+  { name: "Ismael", specialty: "Hardwood Floor Refinishing", paid: 7360, note: "PAID IN FULL · Complete" },
   { name: "Henry Chiang", specialty: "Interior Painting", paid: 3300, note: "PAID IN FULL" },
   { name: "WRS / Joey Caro", specialty: "Wildlife & Rodent Removal", paid: 0, note: "619-786-6440 · ⚠ Renew estimate", alert: true },
   { name: "Gary Faith", specialty: "Plumbing & Bathroom Renovation", paid: 0, note: "On hold · $47,000 estimated" },
   { name: "Victor Martinez", specialty: "Landscaping & Yard", paid: 215, note: "Ongoing" },
   { name: "Tony Hill", specialty: "Carpentry", paid: 180, note: "On call" },
-  { name: "William VanDusen", specialty: "Door Finishing", paid: 0, note: "Status unclear — follow up" }
+  { name: "William VanDusen", specialty: "Door Finishing", paid: 4000, note: "PAID IN FULL · Front door complete" }
 ];
 
 const ZONES = [
@@ -1019,11 +1228,12 @@ const ZONES = [
 window.PROJECTS = PROJECTS;
 window.CONTRACTORS = CONTRACTORS;
 window.ZONES = ZONES;
-  </script>
 
-  <!-- house.jsx — SVG illustration of the facade with clickable zones -->
+  </script>
   <script type="text/babel">
 // SVG illustration of 3685 Pershing Ave — Spanish Revival facade
+// Hand-drawn ink-sketch style, warm tones, clickable zones
+
 function HouseElevation({ activeZone, onZoneClick }) {
   const isActive = (z) => activeZone === z;
   const zoneClass = (z) =>
@@ -1038,32 +1248,32 @@ function HouseElevation({ activeZone, onZoneClick }) {
     >
       <defs>
         <pattern id="stucco" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-          <rect width="40" height="40" fill="#EFE4D2" />
-          <circle cx="6" cy="9" r="0.6" fill="#C4A882" opacity="0.4" />
-          <circle cx="22" cy="17" r="0.5" fill="#C4A882" opacity="0.5" />
-          <circle cx="33" cy="6" r="0.4" fill="#C4A882" opacity="0.4" />
-          <circle cx="14" cy="28" r="0.5" fill="#C4A882" opacity="0.4" />
-          <circle cx="29" cy="33" r="0.6" fill="#C4A882" opacity="0.4" />
-          <circle cx="38" cy="22" r="0.4" fill="#C4A882" opacity="0.5" />
+          <rect width="40" height="40" fill="#E2DAC3" />
+          <circle cx="6" cy="9" r="0.6" fill="#B5AB8A" opacity="0.4" />
+          <circle cx="22" cy="17" r="0.5" fill="#B5AB8A" opacity="0.5" />
+          <circle cx="33" cy="6" r="0.4" fill="#B5AB8A" opacity="0.4" />
+          <circle cx="14" cy="28" r="0.5" fill="#B5AB8A" opacity="0.4" />
+          <circle cx="29" cy="33" r="0.6" fill="#B5AB8A" opacity="0.4" />
+          <circle cx="38" cy="22" r="0.4" fill="#B5AB8A" opacity="0.5" />
         </pattern>
         <pattern id="sideStucco" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-          <rect width="40" height="40" fill="#E5D7BE" />
-          <circle cx="10" cy="12" r="0.6" fill="#A88F6A" opacity="0.5" />
-          <circle cx="26" cy="24" r="0.5" fill="#A88F6A" opacity="0.5" />
-          <circle cx="35" cy="9" r="0.4" fill="#A88F6A" opacity="0.4" />
-          <circle cx="17" cy="31" r="0.5" fill="#A88F6A" opacity="0.5" />
+          <rect width="40" height="40" fill="#D4CCB2" />
+          <circle cx="10" cy="12" r="0.6" fill="#928A6E" opacity="0.5" />
+          <circle cx="26" cy="24" r="0.5" fill="#928A6E" opacity="0.5" />
+          <circle cx="35" cy="9" r="0.4" fill="#928A6E" opacity="0.4" />
+          <circle cx="17" cy="31" r="0.5" fill="#928A6E" opacity="0.5" />
         </pattern>
         <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#F0E6D0" />
-          <stop offset="1" stopColor="#F5EDD8" />
+          <stop offset="0" stopColor="#DED5BC" />
+          <stop offset="1" stopColor="#E5DCC0" />
         </linearGradient>
         <linearGradient id="wood" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#6B4528" />
-          <stop offset="1" stopColor="#4A2F1C" />
+          <stop offset="0" stopColor="#5C4A38" />
+          <stop offset="1" stopColor="#3A2D1E" />
         </linearGradient>
         <linearGradient id="doorWood" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#3A2415" />
-          <stop offset="1" stopColor="#22150C" />
+          <stop offset="0" stopColor="#2E2418" />
+          <stop offset="1" stopColor="#1A1610" />
         </linearGradient>
         <filter id="ink" x="-2%" y="-2%" width="104%" height="104%">
           <feTurbulence baseFrequency="0.9" numOctaves="2" seed="3" />
@@ -1074,25 +1284,28 @@ function HouseElevation({ activeZone, onZoneClick }) {
       {/* Sky */}
       <rect x="0" y="0" width="900" height="380" fill="url(#sky)" />
 
-      {/* Distant tree silhouettes */}
-      <g opacity="0.25" fill="#5C3D2E">
+      {/* Distant tree silhouettes (decorative) */}
+      <g opacity="0.25" fill="#5C4A38">
         <ellipse cx="60" cy="220" rx="45" ry="55" />
         <ellipse cx="100" cy="240" rx="40" ry="45" />
         <ellipse cx="840" cy="210" rx="55" ry="65" />
         <ellipse cx="800" cy="235" rx="38" ry="42" />
       </g>
 
-      {/* Ground */}
-      <rect x="0" y="430" width="900" height="90" fill="#D9C8A8" />
-      <line x1="0" y1="430" x2="900" y2="430" stroke="#8B7355" strokeWidth="1.2" />
+      {/* Ground line */}
+      <rect x="0" y="430" width="900" height="90" fill="#C8BFA5" />
+      <line x1="0" y1="430" x2="900" y2="430" stroke="#827A60" strokeWidth="1.2" />
 
       {/* ── MAIN STUCCO FACADE ─────────────────────────── */}
       <g>
-        <rect x="120" y="170" width="620" height="270" fill="url(#stucco)" stroke="#8B7355" strokeWidth="1.4" />
-        <rect x="740" y="195" width="105" height="245" fill="url(#sideStucco)" stroke="#8B7355" strokeWidth="1.2" />
-        <line x1="740" y1="195" x2="740" y2="440" stroke="#8B7355" strokeWidth="1.2" />
+        {/* Main wall block */}
+        <rect x="120" y="170" width="620" height="270" fill="url(#stucco)" stroke="#827A60" strokeWidth="1.4" />
 
-        {/* Parapet scalloped silhouette */}
+        {/* Side narrower stucco panel */}
+        <rect x="740" y="195" width="105" height="245" fill="url(#sideStucco)" stroke="#827A60" strokeWidth="1.2" />
+        <line x1="740" y1="195" x2="740" y2="440" stroke="#827A60" strokeWidth="1.2" />
+
+        {/* Parapet scalloped silhouette (gentle waves) */}
         <path
           d="M 120 170
              Q 145 130, 170 145
@@ -1108,10 +1321,11 @@ function HouseElevation({ activeZone, onZoneClick }) {
              Q 675 130, 700 145
              T 740 150
              L 740 170 Z"
-          fill="#EFE4D2"
-          stroke="#8B7355"
+          fill="#E2DAC3"
+          stroke="#827A60"
           strokeWidth="1.4"
         />
+        {/* Side panel scallop */}
         <path
           d="M 740 195
              Q 760 175, 780 188
@@ -1119,94 +1333,166 @@ function HouseElevation({ activeZone, onZoneClick }) {
              Q 835 170, 845 195
              L 845 200
              L 740 200 Z"
-          fill="#E5D7BE"
-          stroke="#8B7355"
+          fill="#D4CCB2"
+          stroke="#827A60"
           strokeWidth="1.2"
         />
 
-        {/* Terracotta tile band */}
-        <rect x="120" y="172" width="620" height="10" fill="#C4623A" />
+        {/* Terracotta tile decorative band below cornice */}
+        <rect x="120" y="172" width="620" height="10" fill="#9C7A52" />
         <g>
           {Array.from({ length: 41 }).map((_, i) => (
-            <line key={i} x1={120 + i * 15.5} y1="172" x2={120 + i * 15.5} y2="182" stroke="#8B3A1F" strokeWidth="0.6" />
+            <line
+              key={i}
+              x1={120 + i * 15.5}
+              y1="172"
+              x2={120 + i * 15.5}
+              y2="182"
+              stroke="#5E4528"
+              strokeWidth="0.6"
+            />
           ))}
         </g>
-        <line x1="120" y1="172" x2="740" y2="172" stroke="#8B3A1F" strokeWidth="0.6" />
-        <line x1="120" y1="182" x2="740" y2="182" stroke="#8B3A1F" strokeWidth="0.6" />
+        <line x1="120" y1="172" x2="740" y2="172" stroke="#5E4528" strokeWidth="0.6" />
+        <line x1="120" y1="182" x2="740" y2="182" stroke="#5E4528" strokeWidth="0.6" />
 
-        {/* Terracotta pipe dots */}
+        {/* Terracotta pipe dot accents in parapet */}
         {[170, 220, 290, 370, 480, 540, 600, 670, 720].map((cx) => (
           <g key={cx}>
-            <circle cx={cx} cy="155" r="3.5" fill="#C4623A" stroke="#8B3A1F" strokeWidth="0.5" />
-            <circle cx={cx} cy="155" r="1.2" fill="#22150C" />
+            <circle cx={cx} cy="155" r="3.5" fill="#9C7A52" stroke="#5E4528" strokeWidth="0.5" />
+            <circle cx={cx} cy="155" r="1.2" fill="#1A1610" />
           </g>
         ))}
       </g>
 
-      {/* ── EXTERIOR / ROOF HOTSPOT ───────────────────── */}
-      <rect x="120" y="115" width="725" height="65" fill="transparent"
-        className={zoneClass("exterior")} onClick={() => onZoneClick("exterior")} style={{ cursor: "pointer" }}>
+      {/* ── EXTERIOR / ROOF HOTSPOT (parapet area) ───── */}
+      <rect
+        x="120" y="115" width="725" height="65"
+        fill="transparent"
+        className={zoneClass("exterior")}
+        onClick={() => onZoneClick("exterior")}
+        style={{ cursor: "pointer" }}
+      >
         <title>Exterior &amp; Roof</title>
       </rect>
 
       {/* ── LEFT: LIVING ROOM ARCHED WINDOW ───────────── */}
       <g>
-        <path d="M 165 280 L 165 240 A 55 55 0 0 1 275 240 L 275 280 Z"
-          fill="#1a1410" stroke="url(#wood)" strokeWidth="6" />
-        <line x1="220" y1="180" x2="220" y2="280" stroke="#3a2818" strokeWidth="2" />
-        <line x1="165" y1="245" x2="275" y2="245" stroke="#3a2818" strokeWidth="1.5" />
-        <line x1="165" y1="262" x2="275" y2="262" stroke="#3a2818" strokeWidth="1.5" />
-        <path d="M 175 250 L 180 198 L 185 198 L 180 250 Z" fill="#F5EDD8" opacity="0.18" />
-        <path d="M 228 250 L 234 198 L 240 198 L 234 250 Z" fill="#F5EDD8" opacity="0.18" />
-        <rect x="158" y="280" width="124" height="6" fill="#5C3D2E" />
+        {/* Arched window opening — dark wood frame, semicircle top */}
+        <path
+          d="M 165 280
+             L 165 240
+             A 55 55 0 0 1 275 240
+             L 275 280
+             Z"
+          fill="#161410"
+          stroke="url(#wood)"
+          strokeWidth="6"
+        />
+        {/* Inner wood mullions */}
+        <line x1="220" y1="180" x2="220" y2="280" stroke="#3A2E1E" strokeWidth="2" />
+        <line x1="165" y1="245" x2="275" y2="245" stroke="#3A2E1E" strokeWidth="1.5" />
+        <line x1="165" y1="262" x2="275" y2="262" stroke="#3A2E1E" strokeWidth="1.5" />
+        {/* Highlights in glass */}
+        <path d="M 175 250 L 180 198 L 185 198 L 180 250 Z" fill="#E5DCC0" opacity="0.18" />
+        <path d="M 228 250 L 234 198 L 240 198 L 234 250 Z" fill="#E5DCC0" opacity="0.18" />
+        {/* Sill */}
+        <rect x="158" y="280" width="124" height="6" fill="#5C4A38" />
       </g>
-      <path d="M 158 180 L 282 180 L 282 290 L 158 290 Z" fill="transparent"
-        className={zoneClass("living")} onClick={() => onZoneClick("living")} style={{ cursor: "pointer" }}>
+      <path
+        d="M 158 180 L 282 180 L 282 290 L 158 290 Z"
+        fill="transparent"
+        className={zoneClass("living")}
+        onClick={() => onZoneClick("living")}
+        style={{ cursor: "pointer" }}
+      >
         <title>Living Room</title>
       </path>
 
       {/* ── CENTER: ARCHED PORTICO ENTRY ───────────────── */}
       <g>
-        <path d="M 370 410 L 370 280 A 80 80 0 0 1 530 280 L 530 410 Z" fill="#2A1F15" />
-        <path d="M 370 410 L 370 280 A 80 80 0 0 1 530 280 L 530 410"
-          fill="none" stroke="#8B7355" strokeWidth="2.5" />
-        <g fill="#F5EDD8" stroke="#8B7355" strokeWidth="1">
+        {/* Recessed arch shadow */}
+        <path
+          d="M 370 410
+             L 370 280
+             A 80 80 0 0 1 530 280
+             L 530 410
+             Z"
+          fill="#2A1F15"
+        />
+        {/* Arch outline */}
+        <path
+          d="M 370 410
+             L 370 280
+             A 80 80 0 0 1 530 280
+             L 530 410"
+          fill="none"
+          stroke="#827A60"
+          strokeWidth="2.5"
+        />
+        {/* Ornate scroll brackets at upper corners of arch */}
+        <g fill="#E5DCC0" stroke="#827A60" strokeWidth="1">
+          {/* Left bracket */}
           <path d="M 370 285 Q 355 280, 358 295 Q 360 305, 368 302 Q 365 295, 370 295 Z" />
-          <circle cx="362" cy="293" r="1.5" fill="#8B7355" />
+          <circle cx="362" cy="293" r="1.5" fill="#827A60" />
+          {/* Right bracket */}
           <path d="M 530 285 Q 545 280, 542 295 Q 540 305, 532 302 Q 535 295, 530 295 Z" />
-          <circle cx="538" cy="293" r="1.5" fill="#8B7355" />
+          <circle cx="538" cy="293" r="1.5" fill="#827A60" />
         </g>
-        <rect x="408" y="305" width="84" height="105" fill="url(#doorWood)" stroke="#0E0905" strokeWidth="1.2" />
-        <line x1="450" y1="305" x2="450" y2="410" stroke="#0E0905" strokeWidth="1.2" />
-        <rect x="415" y="312" width="30" height="35" fill="none" stroke="#5C3D2E" strokeWidth="0.8" />
-        <rect x="455" y="312" width="30" height="35" fill="none" stroke="#5C3D2E" strokeWidth="0.8" />
-        <rect x="415" y="355" width="30" height="48" fill="none" stroke="#5C3D2E" strokeWidth="0.8" />
-        <rect x="455" y="355" width="30" height="48" fill="none" stroke="#5C3D2E" strokeWidth="0.8" />
-        <circle cx="443" cy="365" r="1.8" fill="#D4A853" />
-        <circle cx="457" cy="365" r="1.8" fill="#D4A853" />
-        <g stroke="#1a1410" strokeWidth="1" fill="#1a1410">
+
+        {/* Double wood door inside portico */}
+        <rect x="408" y="305" width="84" height="105" fill="url(#doorWood)" stroke="#0E0A06" strokeWidth="1.2" />
+        <line x1="450" y1="305" x2="450" y2="410" stroke="#0E0A06" strokeWidth="1.2" />
+        {/* Door panels */}
+        <rect x="415" y="312" width="30" height="35" fill="none" stroke="#5C4A38" strokeWidth="0.8" />
+        <rect x="455" y="312" width="30" height="35" fill="none" stroke="#5C4A38" strokeWidth="0.8" />
+        <rect x="415" y="355" width="30" height="48" fill="none" stroke="#5C4A38" strokeWidth="0.8" />
+        <rect x="455" y="355" width="30" height="48" fill="none" stroke="#5C4A38" strokeWidth="0.8" />
+        {/* Door handles */}
+        <circle cx="443" cy="365" r="1.8" fill="#B89860" />
+        <circle cx="457" cy="365" r="1.8" fill="#B89860" />
+
+        {/* Iron wall lantern to the right of door */}
+        <g stroke="#161410" strokeWidth="1" fill="#161410">
           <line x1="505" y1="320" x2="505" y2="340" />
-          <polygon points="500,340 510,340 512,360 498,360" fill="#3a2818" />
-          <rect x="502" y="343" width="6" height="14" fill="#D4A853" opacity="0.7" />
+          <polygon points="500,340 510,340 512,360 498,360" fill="#3A2E1E" />
+          <rect x="502" y="343" width="6" height="14" fill="#B89860" opacity="0.7" />
           <line x1="505" y1="357" x2="505" y2="365" />
           <circle cx="505" cy="367" r="1.5" />
         </g>
-        <text x="450" y="297" textAnchor="middle" fontFamily="'Inter', sans-serif"
-          fontSize="14" fontWeight="600" fill="#D4A853" letterSpacing="3">3685</text>
+
+        {/* House numbers "3685" above the door */}
+        <text x="450" y="297" textAnchor="middle"
+              fontFamily="'Inter', sans-serif"
+              fontSize="14" fontWeight="600"
+              fill="#B89860" letterSpacing="3">3685</text>
+
+        {/* North Park heritage plaque (left post) */}
         <g>
-          <circle cx="383" cy="365" r="9" fill="#C4623A" stroke="#5C3D2E" strokeWidth="1" />
-          <circle cx="383" cy="365" r="6" fill="none" stroke="#F5EDD8" strokeWidth="0.6" />
-          <text x="383" y="362" textAnchor="middle" fontFamily="serif" fontSize="3.2" fill="#F5EDD8">NORTH</text>
-          <text x="383" y="366" textAnchor="middle" fontFamily="serif" fontSize="3.2" fill="#F5EDD8">PARK</text>
-          <text x="383" y="370" textAnchor="middle" fontFamily="serif" fontSize="2.5" fill="#F5EDD8">1924</text>
+          <circle cx="383" cy="365" r="9" fill="#9C7A52" stroke="#5C4A38" strokeWidth="1" />
+          <circle cx="383" cy="365" r="6" fill="none" stroke="#E5DCC0" strokeWidth="0.6" />
+          <text x="383" y="362" textAnchor="middle" fontFamily="serif" fontSize="3.2" fill="#E5DCC0">NORTH</text>
+          <text x="383" y="366" textAnchor="middle" fontFamily="serif" fontSize="3.2" fill="#E5DCC0">PARK</text>
+          <text x="383" y="370" textAnchor="middle" fontFamily="serif" fontSize="2.5" fill="#E5DCC0">1924</text>
         </g>
+
+        {/* Concrete steps */}
         <g>
           {[0, 1, 2, 3].map((i) => (
-            <rect key={i} x={370 - i * 14} y={410 + i * 6} width={160 + i * 28} height="7"
-              fill="#D9C8A8" stroke="#8B7355" strokeWidth="0.8" />
+            <rect
+              key={i}
+              x={370 - i * 14}
+              y={410 + i * 6}
+              width={160 + i * 28}
+              height="7"
+              fill="#C8BFA5"
+              stroke="#827A60"
+              strokeWidth="0.8"
+            />
           ))}
         </g>
-        <g stroke="#1a1410" strokeWidth="1.4" fill="none">
+        {/* Iron railing on right side */}
+        <g stroke="#161410" strokeWidth="1.4" fill="none">
           <line x1="540" y1="410" x2="558" y2="438" />
           <line x1="540" y1="418" x2="556" y2="438" />
           {[0, 1, 2, 3].map((i) => (
@@ -1214,36 +1500,55 @@ function HouseElevation({ activeZone, onZoneClick }) {
           ))}
         </g>
       </g>
-      <path d="M 360 270 L 540 270 L 558 440 L 362 440 Z" fill="transparent"
-        className={zoneClass("porch")} onClick={() => onZoneClick("porch")} style={{ cursor: "pointer" }}>
+      <path
+        d="M 360 270 L 540 270 L 558 440 L 362 440 Z"
+        fill="transparent"
+        className={zoneClass("porch")}
+        onClick={() => onZoneClick("porch")}
+        style={{ cursor: "pointer" }}
+      >
         <title>Front Porch</title>
       </path>
 
       {/* ── RIGHT: DINING / BEDROOM ARCHED WINDOW ──────── */}
       <g>
-        <path d="M 605 290 L 605 250 A 45 45 0 0 1 695 250 L 695 290 Z"
-          fill="#1a1410" stroke="url(#wood)" strokeWidth="5" />
-        <line x1="650" y1="205" x2="650" y2="290" stroke="#3a2818" strokeWidth="1.8" />
-        <line x1="605" y1="252" x2="695" y2="252" stroke="#3a2818" strokeWidth="1.3" />
-        <line x1="605" y1="271" x2="695" y2="271" stroke="#3a2818" strokeWidth="1.3" />
-        <path d="M 614 260 L 618 215 L 622 215 L 618 260 Z" fill="#F5EDD8" opacity="0.18" />
-        <path d="M 658 260 L 663 215 L 668 215 L 663 260 Z" fill="#F5EDD8" opacity="0.18" />
-        <rect x="598" y="290" width="104" height="5" fill="#5C3D2E" />
+        <path
+          d="M 605 290
+             L 605 250
+             A 45 45 0 0 1 695 250
+             L 695 290
+             Z"
+          fill="#161410"
+          stroke="url(#wood)"
+          strokeWidth="5"
+        />
+        <line x1="650" y1="205" x2="650" y2="290" stroke="#3A2E1E" strokeWidth="1.8" />
+        <line x1="605" y1="252" x2="695" y2="252" stroke="#3A2E1E" strokeWidth="1.3" />
+        <line x1="605" y1="271" x2="695" y2="271" stroke="#3A2E1E" strokeWidth="1.3" />
+        <path d="M 614 260 L 618 215 L 622 215 L 618 260 Z" fill="#E5DCC0" opacity="0.18" />
+        <path d="M 658 260 L 663 215 L 668 215 L 663 260 Z" fill="#E5DCC0" opacity="0.18" />
+        <rect x="598" y="290" width="104" height="5" fill="#5C4A38" />
       </g>
-      <path d="M 595 200 L 705 200 L 705 298 L 595 298 Z" fill="transparent"
-        className={zoneClass("dining")} onClick={() => onZoneClick("dining")} style={{ cursor: "pointer" }}>
+      <path
+        d="M 595 200 L 705 200 L 705 298 L 595 298 Z"
+        fill="transparent"
+        className={zoneClass("dining")}
+        onClick={() => onZoneClick("dining")}
+        style={{ cursor: "pointer" }}
+      >
         <title>Dining Room</title>
       </path>
 
       {/* Side panel small window */}
-      <rect x="765" y="270" width="55" height="65" fill="#1a1410" stroke="#5C3D2E" strokeWidth="2" />
-      <line x1="792" y1="270" x2="792" y2="335" stroke="#3a2818" strokeWidth="1" />
-      <line x1="765" y1="302" x2="820" y2="302" stroke="#3a2818" strokeWidth="1" />
+      <rect x="765" y="270" width="55" height="65" fill="#161410" stroke="#5C4A38" strokeWidth="2" />
+      <line x1="792" y1="270" x2="792" y2="335" stroke="#3A2E1E" strokeWidth="1" />
+      <line x1="765" y1="302" x2="820" y2="302" stroke="#3A2E1E" strokeWidth="1" />
 
       {/* ── FOREGROUND: STONE WALL + GARDEN ─────────────── */}
       <g>
-        <rect x="0" y="445" width="900" height="38" fill="#D9C8A8" />
-        <g stroke="#8B7355" strokeWidth="0.8" fill="#C8B894">
+        {/* Stone retaining wall */}
+        <rect x="0" y="445" width="900" height="38" fill="#C8BFA5" />
+        <g stroke="#827A60" strokeWidth="0.8" fill="#B8B098">
           {Array.from({ length: 18 }).map((_, i) => (
             <rect key={i} x={i * 50} y="445" width="50" height="18" />
           ))}
@@ -1251,36 +1556,53 @@ function HouseElevation({ activeZone, onZoneClick }) {
             <rect key={`b${i}`} x={i * 50 + 25} y="463" width="50" height="20" />
           ))}
         </g>
+
+        {/* Garden plantings — drought tolerant in warm tones */}
         <g>
-          <ellipse cx="40" cy="455" rx="35" ry="14" fill="#8B5A3C" opacity="0.7" />
-          <ellipse cx="40" cy="448" rx="28" ry="11" fill="#A66E48" opacity="0.7" />
+          {/* Left cluster */}
+          <ellipse cx="40" cy="455" rx="35" ry="14" fill="#6B7556" opacity="0.7" />
+          <ellipse cx="40" cy="448" rx="28" ry="11" fill="#84906C" opacity="0.7" />
+          {/* Salvia spikes */}
           {[20, 35, 48, 60].map((x, i) => (
-            <line key={i} x1={x} y1="455" x2={x + 2} y2="430" stroke="#7A3F5E" strokeWidth="2" opacity="0.75" />
+            <line key={i} x1={x} y1="455" x2={x + 2} y2="430" stroke="#4B5E4A" strokeWidth="2" opacity="0.75" />
           ))}
-          <g stroke="#B58A4F" strokeWidth="1.2" fill="none" opacity="0.85">
+          {/* Ornamental grasses left */}
+          <g stroke="#9CA078" strokeWidth="1.2" fill="none" opacity="0.85">
             <path d="M 95 450 Q 92 425, 88 420" />
             <path d="M 100 450 Q 102 422, 98 415" />
             <path d="M 105 450 Q 108 428, 105 418" />
             <path d="M 110 450 Q 112 430, 110 425" />
           </g>
-          <ellipse cx="290" cy="455" rx="40" ry="13" fill="#7A4F3A" opacity="0.55" />
-          <ellipse cx="290" cy="448" rx="30" ry="10" fill="#9A6543" opacity="0.65" />
-          <ellipse cx="850" cy="455" rx="40" ry="14" fill="#8B5A3C" opacity="0.7" />
-          <ellipse cx="850" cy="448" rx="32" ry="11" fill="#A66E48" opacity="0.7" />
+
+          {/* Mid shrub */}
+          <ellipse cx="290" cy="455" rx="40" ry="13" fill="#5C6648" opacity="0.55" />
+          <ellipse cx="290" cy="448" rx="30" ry="10" fill="#7A8460" opacity="0.65" />
+
+          {/* Right cluster */}
+          <ellipse cx="850" cy="455" rx="40" ry="14" fill="#6B7556" opacity="0.7" />
+          <ellipse cx="850" cy="448" rx="32" ry="11" fill="#84906C" opacity="0.7" />
           {[825, 840, 855, 870].map((x, i) => (
-            <line key={i} x1={x} y1="455" x2={x + 2} y2="430" stroke="#7A3F5E" strokeWidth="2" opacity="0.75" />
+            <line key={i} x1={x} y1="455" x2={x + 2} y2="430" stroke="#4B5E4A" strokeWidth="2" opacity="0.75" />
           ))}
-          <g stroke="#B58A4F" strokeWidth="1.2" fill="none" opacity="0.85">
+          {/* Grasses right */}
+          <g stroke="#9CA078" strokeWidth="1.2" fill="none" opacity="0.85">
             <path d="M 790 452 Q 792 425, 788 418" />
             <path d="M 795 452 Q 798 425, 796 415" />
             <path d="M 800 452 Q 802 430, 800 420" />
           </g>
-          <ellipse cx="450" cy="478" rx="25" ry="5" fill="#C8B894" stroke="#8B7355" strokeWidth="0.6" />
-          <ellipse cx="450" cy="495" rx="28" ry="6" fill="#C8B894" stroke="#8B7355" strokeWidth="0.6" />
+
+          {/* Path stones along center */}
+          <ellipse cx="450" cy="478" rx="25" ry="5" fill="#B8B098" stroke="#827A60" strokeWidth="0.6" />
+          <ellipse cx="450" cy="495" rx="28" ry="6" fill="#B8B098" stroke="#827A60" strokeWidth="0.6" />
         </g>
       </g>
-      <rect x="0" y="430" width="900" height="90" fill="transparent"
-        className={zoneClass("garden")} onClick={() => onZoneClick("garden")} style={{ cursor: "pointer" }}>
+      <rect
+        x="0" y="430" width="900" height="90"
+        fill="transparent"
+        className={zoneClass("garden")}
+        onClick={() => onZoneClick("garden")}
+        style={{ cursor: "pointer" }}
+      >
         <title>Front Garden</title>
       </rect>
     </svg>
@@ -1288,10 +1610,11 @@ function HouseElevation({ activeZone, onZoneClick }) {
 }
 
 window.HouseElevation = HouseElevation;
-  </script>
 
-  <!-- app.jsx — main dashboard component -->
+  </script>
   <script type="text/babel">
+// Main dashboard — 3685 Pershing Ave Home Renovation
+
 const STATUSES = ["All", "In Progress", "Completed", "Planned", "On Hold", "Action Needed"];
 const SORTS = ["Phase", "Budget ↓", "Contractor", "Area"];
 
@@ -1306,108 +1629,148 @@ const PHASES = [
 const fmtMoney = (n) =>
   n == null ? "—" : "$" + n.toLocaleString("en-US");
 
+// ── Arts & Crafts ornamental divider ─────────────────────
 function Ornament({ width = 200 }) {
   return (
     <svg viewBox="0 0 200 22" style={{ width, height: 22, display: "block" }}>
-      <line x1="0" y1="9" x2="80" y2="9" stroke="#8B7355" strokeWidth="1" />
-      <line x1="0" y1="13" x2="80" y2="13" stroke="#8B7355" strokeWidth="0.5" />
-      <g transform="translate(100,11)" stroke="#5C3D2E" strokeWidth="1.1" fill="none">
+      <line x1="0" y1="9" x2="80" y2="9" stroke="#827A60" strokeWidth="1" />
+      <line x1="0" y1="13" x2="80" y2="13" stroke="#827A60" strokeWidth="0.5" />
+      <g transform="translate(100,11)" stroke="#5C4A38" strokeWidth="1.1" fill="none">
         <rect x="-10" y="-6" width="12" height="12" transform="rotate(45)" />
         <rect x="-6" y="-6" width="12" height="12" transform="rotate(45)" />
         <rect x="-2" y="-6" width="12" height="12" transform="rotate(45)" />
-        <circle cx="0" cy="0" r="2" fill="#C4623A" stroke="none" />
+        <circle cx="0" cy="0" r="2" fill="#9C7A52" stroke="none" />
       </g>
-      <line x1="120" y1="9" x2="200" y2="9" stroke="#8B7355" strokeWidth="1" />
-      <line x1="120" y1="13" x2="200" y2="13" stroke="#8B7355" strokeWidth="0.5" />
+      <line x1="120" y1="9" x2="200" y2="9" stroke="#827A60" strokeWidth="1" />
+      <line x1="120" y1="13" x2="200" y2="13" stroke="#827A60" strokeWidth="0.5" />
     </svg>
   );
 }
 
+// ── Status badge — rubber stamp / wax seal style ────────
 function StatusBadge({ status }) {
   const map = {
-    "IN PROGRESS":   { color: "#C4623A", border: "#8B3A1F", rot: 1,  bg: "rgba(196,98,58,0.08)" },
-    "COMPLETED":     { color: "#2D4A2D", border: "#1F3320", rot: -2, bg: "rgba(45,74,45,0.08)" },
-    "PLANNED":       { color: "#4A6274", border: "#2F4250", rot: 0,  bg: "transparent" },
-    "ON HOLD":       { color: "#8B2020", border: "#5A1212", rot: -2, bg: "transparent" },
-    "ACTION NEEDED": { color: "#A36A00", border: "#7A4A00", rot: 1,  bg: "rgba(212,168,83,0.18)" }
+    "IN PROGRESS":   { color: "#9C7A52", border: "#5E4528", rot: 1,  stamp: true,  bg: "rgba(196,98,58,0.08)" },
+    "COMPLETED":     { color: "#1E3A52", border: "#13283A", rot: -2, stamp: false, bg: "rgba(45,74,45,0.08)" },
+    "PLANNED":       { color: "#2F5468", border: "#2F4250", rot: 0,  stamp: true,  bg: "transparent" },
+    "ON HOLD":       { color: "#8B2020", border: "#5A1212", rot: -2, stamp: true,  bg: "transparent" },
+    "ACTION NEEDED": { color: "#A36A00", border: "#7A4A00", rot: 1,  stamp: true,  bg: "rgba(212,168,83,0.18)" }
   };
   const s = map[status] || map.PLANNED;
   return (
-    <span style={{
-      display: "inline-flex", alignItems: "center", gap: 6,
-      fontFamily: "'Playfair Display', serif", fontWeight: 700,
-      fontSize: 10.5, letterSpacing: "2px", color: s.color,
-      border: `1.8px ${status === "PLANNED" ? "dashed" : "solid"} ${s.border}`,
-      padding: "4px 10px", background: s.bg,
-      textTransform: "uppercase", transform: `rotate(${s.rot}deg)`,
-      borderRadius: 2,
-      boxShadow: status === "COMPLETED" ? "inset 0 0 0 2px #2D4A2D, 0 0 0 1px #F5F0E8" : "none"
-    }}>
-      {status === "COMPLETED" && <span style={{ fontSize: 11 }}>&#10003;</span>}
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 6,
+        fontFamily: "'Playfair Display', serif",
+        fontWeight: 700,
+        fontSize: 10.5,
+        letterSpacing: "2px",
+        color: s.color,
+        border: `1.8px ${status === "PLANNED" ? "dashed" : "solid"} ${s.border}`,
+        padding: "4px 10px",
+        background: s.bg,
+        textTransform: "uppercase",
+        transform: `rotate(${s.rot}deg)`,
+        borderRadius: 2,
+        boxShadow: status === "COMPLETED" ? "inset 0 0 0 2px #1E3A52, 0 0 0 1px #EBE4D2" : "none"
+      }}
+    >
+      {status === "COMPLETED" && <span style={{ fontSize: 11 }}>✓</span>}
       {status === "ACTION NEEDED" && <span style={{ fontSize: 11 }}>!</span>}
       {status}
     </span>
   );
 }
 
+// ── Measuring-tape progress bar ─────────────────────────
 function TapeBar({ value, max, alert }) {
   const pct = max > 0 ? Math.min(100, (value / max) * 100) : 0;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-      <div style={{
-        position: "relative", flex: 1, height: 10,
-        background: "#E0CFA9", border: "1px solid #8B7355",
-        borderRadius: 0, overflow: "hidden"
-      }}>
-        <div style={{
-          width: `${pct}%`, height: "100%",
-          background: alert
-            ? "repeating-linear-gradient(45deg,#8B2020 0 4px,#A33030 4px 8px)"
-            : "linear-gradient(180deg,#C4623A,#A14A2A)",
-          transition: "width 0.4s ease"
-        }} />
+      <div
+        style={{
+          position: "relative",
+          flex: 1,
+          height: 10,
+          background: "#E0CFA9",
+          border: "1px solid #827A60",
+          borderRadius: 0,
+          overflow: "hidden"
+        }}
+      >
+        <div
+          style={{
+            width: `${pct}%`,
+            height: "100%",
+            background: alert
+              ? "repeating-linear-gradient(45deg,#8B2020 0 4px,#A33030 4px 8px)"
+              : "linear-gradient(180deg,#9C7A52,#A14A2A)",
+            transition: "width 0.4s ease"
+          }}
+        />
+        {/* tape ticks */}
         {Array.from({ length: 20 }).map((_, i) => (
-          <div key={i} style={{
-            position: "absolute", left: `${i * 5}%`, top: 0, width: 1,
-            height: i % 4 === 0 ? 10 : 5, background: "rgba(92,61,46,0.35)"
-          }} />
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: `${i * 5}%`,
+              top: 0,
+              width: 1,
+              height: i % 4 === 0 ? 10 : 5,
+              background: "rgba(92,61,46,0.35)"
+            }}
+          />
         ))}
       </div>
-      <span style={{ fontFamily: "Inter, sans-serif", fontSize: 11, color: "#5C3D2E", minWidth: 36, textAlign: "right" }}>
+      <span style={{ fontFamily: "Inter, sans-serif", fontSize: 11, color: "#5C4A38", minWidth: 36, textAlign: "right" }}>
         {Math.round(pct)}%
       </span>
     </div>
   );
 }
 
+// ── Project card ─────────────────────────────────────────
 function ProjectCard({ p, expanded, onToggle }) {
   const onHold = p.status === "ON HOLD";
   const completed = p.status === "COMPLETED";
   const action = p.status === "ACTION NEEDED";
+
   return (
     <div
       className={`project-card ${onHold ? "on-hold" : ""} ${completed ? "completed" : ""} ${action ? "action" : ""}`}
       onClick={onToggle}
     >
-      {onHold && <div className="hold-stamp">ON HOLD</div>}
+      {onHold && (
+        <div className="hold-stamp">ON HOLD</div>
+      )}
       <div className="card-top">
         <StatusBadge status={p.status} />
         <span className="area-tag">{p.area}</span>
       </div>
+
       <h3 className="project-name">{p.name}</h3>
+
       <div className="contractor-line">
-        {p.isDIY
-          ? <span className="diy-tag">DIY</span>
-          : <span className="contractor-chip"><span className="dot" />{p.contractor}</span>
-        }
-        {p.contractorPhone && <span className="phone">&middot; {p.contractorPhone}</span>}
+        {p.isDIY ? (
+          <span className="diy-tag">DIY</span>
+        ) : (
+          <span className="contractor-chip">
+            <span className="dot" />{p.contractor}
+          </span>
+        )}
+        {p.contractorPhone && <span className="phone">· {p.contractorPhone}</span>}
       </div>
+
       {p.timeline && (
         <div className="timeline-row">
           <span className="timeline-label">Timeline</span>
           <span className="timeline-value">{p.timeline}</span>
         </div>
       )}
+
       <div className="money-grid">
         <div>
           <div className="money-label">Estimated</div>
@@ -1421,19 +1784,27 @@ function ProjectCard({ p, expanded, onToggle }) {
           {p.paidNote && <div className="money-note">{p.paidNote}</div>}
         </div>
       </div>
-      {p.estimated > 0 && <TapeBar value={p.paid || 0} max={p.estimated} alert={action} />}
-      <button className="notes-toggle" onClick={(e) => { e.stopPropagation(); onToggle(); }}>
+
+      {p.estimated > 0 && (
+        <TapeBar value={p.paid || 0} max={p.estimated} alert={action} />
+      )}
+
+      <button
+        className="notes-toggle"
+        onClick={(e) => { e.stopPropagation(); onToggle(); }}
+      >
         {expanded ? "▾" : "▸"} Notes
       </button>
+
       {expanded && (
         <div className="notes-body">
           <p>{p.notes}</p>
           <div className="polaroid">
             <div className="polaroid-frame">
-              <span className="polaroid-icon">&#9651;</span>
+              <span className="polaroid-icon">◳</span>
               <span className="polaroid-text">photo slot</span>
             </div>
-            <div className="polaroid-caption">&mdash; {p.name.toLowerCase()} &mdash;</div>
+            <div className="polaroid-caption">— {p.name.toLowerCase()} —</div>
           </div>
         </div>
       )}
@@ -1441,37 +1812,144 @@ function ProjectCard({ p, expanded, onToggle }) {
   );
 }
 
+// ── Foreman's pinned note ───────────────────────────────
 function PinnedNote({ rot, color, title, body, cost, area, warn }) {
   return (
-    <div className="pinned-note" style={{ transform: `rotate(${rot}deg)`, background: color }}>
+    <div
+      className="pinned-note"
+      style={{
+        transform: `rotate(${rot}deg)`,
+        background: color
+      }}
+    >
       <div className="pin" />
+      <div className="pin-clip">📌</div>
       <h4 className="note-title">{title}</h4>
       <p className="note-body">{body}</p>
       <div className="note-meta">
         <span className="note-cost">{cost}</span>
         <span className="note-area">{area}</span>
       </div>
-      {warn && <div className="note-warn">&#9888; {warn}</div>}
+      {warn && <div className="note-warn">⚠ {warn}</div>}
     </div>
   );
 }
 
+// ── Phase divider ───────────────────────────────────────
 function PhaseDivider({ phase, count }) {
   return (
     <div className="phase-divider">
       <span className="phase-rule" />
       <span className="phase-text">
         <span className="phase-label">{phase.label}</span>
-        {phase.roman && <span className="phase-roman"> &middot; {phase.roman}</span>}
+        {phase.roman && <span className="phase-roman"> · {phase.roman}</span>}
         {phase.sub && <span className="phase-sub"> ({phase.sub})</span>}
-        <span className="phase-count"> &mdash; {count} {count === 1 ? "project" : "projects"}</span>
+        <span className="phase-count"> — {count} {count === 1 ? "project" : "projects"}</span>
       </span>
       <span className="phase-rule" />
     </div>
   );
 }
 
+// ── GLANCE VIEW — clean at-a-glance table ───────────────
+function GlanceView({ projects, totals }) {
+  const groups = [
+    { key: "ACTION NEEDED", label: "Action Needed",  tone: "amber" },
+    { key: "IN PROGRESS",   label: "In Progress",    tone: "terra" },
+    { key: "PLANNED",       label: "Planned · Upcoming", tone: "slate" },
+    { key: "COMPLETED",     label: "Completed",      tone: "green" },
+    { key: "ON HOLD",       label: "On Hold",        tone: "red" }
+  ];
+
+  return (
+    <div className="glance">
+      {/* Quick stats strip */}
+      <div className="glance-stats">
+        <div className="gstat">
+          <div className="gstat-label">Active Now</div>
+          <div className="gstat-value">{projects.filter(p => p.status === "IN PROGRESS").length}</div>
+        </div>
+        <div className="gstat alert">
+          <div className="gstat-label">Action Needed</div>
+          <div className="gstat-value">{projects.filter(p => p.status === "ACTION NEEDED").length}</div>
+        </div>
+        <div className="gstat">
+          <div className="gstat-label">Planned</div>
+          <div className="gstat-value">{projects.filter(p => p.status === "PLANNED").length}</div>
+        </div>
+        <div className="gstat done">
+          <div className="gstat-label">Completed</div>
+          <div className="gstat-value">{projects.filter(p => p.status === "COMPLETED").length}</div>
+        </div>
+        <div className="gstat hold">
+          <div className="gstat-label">On Hold</div>
+          <div className="gstat-value">{projects.filter(p => p.status === "ON HOLD").length}</div>
+        </div>
+        <div className="gstat money">
+          <div className="gstat-label">Paid to date</div>
+          <div className="gstat-value">{fmtMoney(totals.paid)}</div>
+        </div>
+      </div>
+
+      {groups.map(g => {
+        const list = projects.filter(p => p.status === g.key);
+        if (list.length === 0) return null;
+        return (
+          <div key={g.key} className={`glance-group tone-${g.tone}`}>
+            <div className="glance-group-head">
+              <span className={`glance-dot tone-${g.tone}`} />
+              <h3 className="glance-group-title">{g.label}</h3>
+              <span className="glance-group-count">{list.length}</span>
+            </div>
+            <div className="glance-table">
+              <div className="glance-row glance-head-row">
+                <div>Project</div>
+                <div>Area</div>
+                <div>Contractor</div>
+                <div>Timeline</div>
+                <div className="right">Estimated</div>
+                <div className="right">Paid</div>
+              </div>
+              {list.map(p => {
+                const pct = p.estimated ? Math.round(((p.paid || 0) / p.estimated) * 100) : null;
+                return (
+                  <div key={p.id} className="glance-row">
+                    <div className="glance-name">
+                      {p.name}
+                      {p.contractorPhone && (
+                        <span className="glance-phone"> · {p.contractorPhone}</span>
+                      )}
+                    </div>
+                    <div className="glance-area">{p.area}</div>
+                    <div className="glance-contractor">
+                      {p.isDIY ? <span className="diy-mini">DIY</span> : p.contractor}
+                    </div>
+                    <div className="glance-time">{p.timeline || "—"}</div>
+                    <div className="right glance-money">
+                      {p.estimated == null ? (p.estimatedNote || "TBD") : fmtMoney(p.estimated)}
+                    </div>
+                    <div className="right glance-money">
+                      <span className={p.paid > 0 && p.paid >= (p.estimated || 0) ? "paid-full" : ""}>
+                        {fmtMoney(p.paid || 0)}
+                      </span>
+                      {pct !== null && p.estimated > 0 && p.status !== "COMPLETED" && (
+                        <span className="glance-pct"> ({pct}%)</span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── MAIN APP ────────────────────────────────────────────
 function Dashboard() {
+  const [tab, setTab] = React.useState("journal"); // "journal" | "glance"
   const [zone, setZone] = React.useState(null);
   const [status, setStatus] = React.useState("All");
   const [sort, setSort] = React.useState("Phase");
@@ -1481,9 +1959,12 @@ function Dashboard() {
   const projects = window.PROJECTS;
   const contractors = window.CONTRACTORS;
 
-  const today = new Date(2026, 4, 18);
-  const todayLong = today.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  const today = new Date(2026, 4, 18); // May 18, 2026
+  const todayLong = today.toLocaleDateString("en-US", {
+    year: "numeric", month: "long", day: "numeric"
+  });
 
+  // Totals
   const totals = React.useMemo(() => {
     let est = 0, paid = 0;
     projects.forEach(p => {
@@ -1491,36 +1972,48 @@ function Dashboard() {
       paid += (p.paid || 0);
     });
     return {
-      est, paid, remaining: est - paid,
+      est,
+      paid,
+      remaining: est - paid,
       active: projects.filter(p => p.status === "IN PROGRESS").length,
       tracked: projects.length
     };
   }, [projects]);
 
+  // Category breakdown
   const categories = React.useMemo(() => [
-    { name: "Interior Finishes", paid: 10660, total: 13960 },
-    { name: "Windows & Doors",   paid: 450,   total: 4200 },
+    { name: "Interior Finishes", paid: 11660, total: 11660 },
+    { name: "Windows & Doors",   paid: 4450,  total: 8200 },
     { name: "Wildlife Removal",  paid: 0,     total: 1764, alert: true },
     { name: "Outdoor & Garden",  paid: 1100,  total: 2204 },
     { name: "Plumbing & Baths",  paid: 0,     total: 47000, onHold: true }
   ], []);
 
+  // Filtered + sorted projects
   const filtered = React.useMemo(() => {
     let list = projects.slice();
     if (zone) list = list.filter(p => p.zone === zone);
     if (status !== "All") {
       const map = {
-        "In Progress": "IN PROGRESS", "Completed": "COMPLETED",
-        "Planned": "PLANNED", "On Hold": "ON HOLD", "Action Needed": "ACTION NEEDED"
+        "In Progress": "IN PROGRESS",
+        "Completed": "COMPLETED",
+        "Planned": "PLANNED",
+        "On Hold": "ON HOLD",
+        "Action Needed": "ACTION NEEDED"
       };
       list = list.filter(p => p.status === map[status]);
     }
-    if (sort === "Budget ↓") list.sort((a, b) => (b.estimated || 0) - (a.estimated || 0));
-    else if (sort === "Contractor") list.sort((a, b) => (a.contractor || "").localeCompare(b.contractor || ""));
-    else if (sort === "Area") list.sort((a, b) => a.area.localeCompare(b.area));
+    if (sort === "Budget ↓") {
+      list.sort((a, b) => (b.estimated || 0) - (a.estimated || 0));
+    } else if (sort === "Contractor") {
+      list.sort((a, b) => (a.contractor || "").localeCompare(b.contractor || ""));
+    } else if (sort === "Area") {
+      list.sort((a, b) => a.area.localeCompare(b.area));
+    }
     return list;
   }, [projects, zone, status, sort]);
 
+  // Group by phase
   const grouped = React.useMemo(() => {
     if (sort !== "Phase") return null;
     const g = {};
@@ -1535,13 +2028,13 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      {/* MASTHEAD */}
+      {/* ── MASTHEAD ───────────────────────────────────── */}
       <header className="masthead">
         <div className="masthead-top">
           <div>
             <div className="eyebrow">Renovation Journal</div>
             <h1 className="address">3685 Pershing Ave</h1>
-            <div className="subaddress">North Park &middot; San Diego &middot; Est. <span className="num">1924</span></div>
+            <div className="subaddress">North Park · San Diego · Est. <span className="num">1924</span></div>
           </div>
           <div className="masthead-right">
             <div className="date-stamp">
@@ -1551,27 +2044,51 @@ function Dashboard() {
             <button className="print-seal" onClick={() => window.print()} title="Print Summary">
               <svg viewBox="0 0 64 64" width="56" height="56">
                 <circle cx="32" cy="32" r="29" fill="#8B2020" stroke="#5A1212" strokeWidth="2" />
-                <circle cx="32" cy="32" r="24" fill="none" stroke="#F5F0E8" strokeWidth="0.8" strokeDasharray="2 2" />
-                <text x="32" y="28" textAnchor="middle" fontFamily="'Playfair Display', serif" fontSize="8.5" fill="#F5F0E8" letterSpacing="1.2">PRINT</text>
-                <text x="32" y="40" textAnchor="middle" fontFamily="'Playfair Display', serif" fontSize="7.5" fill="#F5F0E8" letterSpacing="1">SUMMARY</text>
-                <line x1="14" y1="46" x2="50" y2="46" stroke="#F5F0E8" strokeWidth="0.6" />
+                <circle cx="32" cy="32" r="24" fill="none" stroke="#EBE4D2" strokeWidth="0.8" strokeDasharray="2 2" />
+                <text x="32" y="28" textAnchor="middle" fontFamily="'Playfair Display', serif" fontSize="8.5" fill="#EBE4D2" letterSpacing="1.2">PRINT</text>
+                <text x="32" y="40" textAnchor="middle" fontFamily="'Playfair Display', serif" fontSize="7.5" fill="#EBE4D2" letterSpacing="1">SUMMARY</text>
+                <line x1="14" y1="46" x2="50" y2="46" stroke="#EBE4D2" strokeWidth="0.6" />
               </svg>
             </button>
           </div>
         </div>
-        <div className="ornament-row"><Ornament width={320} /></div>
+
+        <div className="ornament-row">
+          <Ornament width={320} />
+        </div>
+
         <div className="pulse-line">
           <span><b className="num">{totals.tracked}</b> projects tracked</span>
-          <span className="dot-sep">&middot;</span>
+          <span className="dot-sep">·</span>
           <span><b className="num">{fmtMoney(totals.est)}</b> estimated</span>
-          <span className="dot-sep">&middot;</span>
+          <span className="dot-sep">·</span>
           <span><b className="num">{fmtMoney(totals.paid)}</b> paid</span>
-          <span className="dot-sep">&middot;</span>
+          <span className="dot-sep">·</span>
           <span><b className="num">{totals.active}</b> active this month</span>
         </div>
       </header>
 
-      {/* ACTION NEEDED BANNER */}
+      {/* ── TABS ────────────────────────────────────────── */}
+      <div className="tab-bar">
+        <button
+          className={`tab ${tab === "journal" ? "active" : ""}`}
+          onClick={() => setTab("journal")}
+        >
+          <span className="tab-num">I.</span>
+          <span className="tab-label">The Journal</span>
+          <span className="tab-sub">Full illustrated view</span>
+        </button>
+        <button
+          className={`tab ${tab === "glance" ? "active" : ""}`}
+          onClick={() => setTab("glance")}
+        >
+          <span className="tab-num">II.</span>
+          <span className="tab-label">At a Glance</span>
+          <span className="tab-sub">Clean project table</span>
+        </button>
+      </div>
+
+      {/* ── ACTION NEEDED BANNER ────────────────────────── */}
       <div className="alert-notice">
         <div className="notice-stamp">
           <svg viewBox="0 0 40 40" width="40" height="40">
@@ -1580,42 +2097,64 @@ function Dashboard() {
           </svg>
         </div>
         <div className="notice-body">
-          <div className="notice-label">&mdash; NOTICE &middot; ACTION REQUIRED &mdash;</div>
+          <div className="notice-label">— NOTICE · ACTION REQUIRED —</div>
           <div className="notice-text">
-            <b>WRS Wildlife Removal &mdash; Estimate #3155 expired April 23, 2026.</b><br />
+            <b>WRS Wildlife Removal — Estimate #3155 expired April 23, 2026.</b>
+            <br />
             Call Joey Caro at <span className="phone-num">619-786-6440</span> to renew before booking. <i>June 2026 start date at risk.</i>
           </div>
         </div>
         <div className="telegram-stripe" />
       </div>
 
-      {/* FOREMAN'S BOARD */}
+      {tab === "glance" && <GlanceView projects={projects} totals={totals} />}
+
+      {tab === "journal" && <React.Fragment>
+
+      {/* ── FOREMAN'S BOARD ─────────────────────────────── */}
       <section className="corkboard">
         <div className="section-head">
           <h2 className="section-title">Foreman's Board</h2>
-          <span className="section-sub">&mdash; What's happening now &middot; May&ndash;June 2026 &mdash;</span>
+          <span className="section-sub">— What's happening now · May–June 2026 —</span>
         </div>
         <div className="board-surface">
           <div className="board-notes">
-            <PinnedNote rot={-2.2} color="#F4E9CC" title="Heartwood Restoration"
+            <PinnedNote
+              rot={-2.2}
+              color="#F4E9CC"
+              title="Heartwood Restoration"
               body="Window casement install in progress. May 20 → May 30, 2026."
-              cost="$4,200 · $450 paid" area="Living Room" />
-            <PinnedNote rot={1.5} color="#F5DCC4" title="WRS Wildlife"
+              cost="$4,200 · $450 paid"
+              area="Living Room"
+            />
+            <PinnedNote
+              rot={1.5}
+              color="#F5DCC4"
+              title="WRS Wildlife"
               body="Rodent trapping & exclusion — attic + crawl space."
-              cost="$1,764 estimated" area="Crawlspace & Attic" warn="Renew estimate before booking" />
-            <PinnedNote rot={-1.3} color="#EBE3CE" title="Ismael — Floors"
-              body="Hardwood floor refinish, full interior. July 7 start."
-              cost="$7,360 · $500 deposit" area="Whole House" />
+              cost="$1,764 estimated"
+              area="Crawlspace & Attic"
+              warn="Renew estimate before booking"
+            />
+            <PinnedNote
+              rot={-1.3}
+              color="#EBE3CE"
+              title="Ismael — Floors"
+              body="Hardwood floor refinish complete. ✓ Paid in full."
+              cost="$7,360 PAID"
+              area="Whole House"
+            />
           </div>
         </div>
       </section>
 
-      {/* BUDGET LEDGER */}
+      {/* ── BUDGET LEDGER ───────────────────────────────── */}
       <section className="ledger">
         <div className="section-head">
           <h2 className="section-title">Project Ledger</h2>
-          <span className="section-sub">&mdash; Estimated &middot; Paid &middot; Remaining &mdash;</span>
+          <span className="section-sub">— Estimated · Paid · Remaining —</span>
         </div>
+
         <div className="ledger-totals">
           <div className="ledger-col">
             <div className="ledger-label">Estimated</div>
@@ -1635,15 +2174,18 @@ function Dashboard() {
             <div className="ledger-sub">to be billed</div>
           </div>
         </div>
+
         <div className="ledger-categories">
           {categories.map(c => (
             <div key={c.name} className={`cat-row ${c.onHold ? "on-hold-row" : ""}`}>
               <div className="cat-name">
                 {c.name}
-                {c.alert && <span className="cat-warn"> &#9888;</span>}
+                {c.alert && <span className="cat-warn"> ⚠</span>}
                 {c.onHold && <span className="cat-hold"> (ON HOLD)</span>}
               </div>
-              <div className="cat-bar"><TapeBar value={c.paid} max={c.total} alert={c.alert} /></div>
+              <div className="cat-bar">
+                <TapeBar value={c.paid} max={c.total} alert={c.alert} />
+              </div>
               <div className="cat-fig">
                 <span className="num">{fmtMoney(c.paid)}</span>
                 <span className="cat-of"> of </span>
@@ -1654,43 +2196,58 @@ function Dashboard() {
         </div>
       </section>
 
-      {/* HOUSE SELECTOR */}
+      {/* ── HOUSE SELECTOR ──────────────────────────────── */}
       <section className="house-section">
         <div className="section-head">
           <h2 className="section-title">The Facade</h2>
-          <span className="section-sub">&mdash; Click a zone to filter projects &mdash;</span>
+          <span className="section-sub">— Click a zone to filter projects —</span>
         </div>
+
         <div className="house-frame">
           <window.HouseElevation
             activeZone={zone}
             onZoneClick={(z) => setZone(zone === z ? null : z)}
           />
         </div>
+
         <div className="zone-tiles">
           {window.ZONES.filter(z => z.on === "tile").map(z => (
-            <button key={z.id} className={`zone-tile ${zone === z.id ? "active" : ""}`}
-              onClick={() => setZone(zone === z.id ? null : z.id)}>
+            <button
+              key={z.id}
+              className={`zone-tile ${zone === z.id ? "active" : ""}`}
+              onClick={() => setZone(zone === z.id ? null : z.id)}
+            >
               <span className="tile-mark" />
               <span className="tile-label">{z.label}</span>
             </button>
           ))}
-          <button className={`zone-tile clear ${!zone ? "active" : ""}`} onClick={() => setZone(null)}>
+          <button
+            className={`zone-tile clear ${!zone ? "active" : ""}`}
+            onClick={() => setZone(null)}
+          >
             <span className="tile-mark" />
             <span className="tile-label">All Zones</span>
           </button>
         </div>
+
         <div className="filter-readout">
-          Showing: <i>{activeZoneLabel}</i> projects
+          Showing: <i>{activeZoneLabel}</i> {zone ? "projects" : "projects"}
         </div>
       </section>
 
-      {/* FILTER + SORT BAR */}
+      {/* ── FILTER + SORT BAR ───────────────────────────── */}
       <section className="filter-bar">
         <div className="filter-row">
           <span className="filter-label">Status</span>
           <div className="filter-tabs">
             {STATUSES.map(s => (
-              <button key={s} className={`stamp-tab ${status === s ? "active" : ""}`} onClick={() => setStatus(s)}>{s}</button>
+              <button
+                key={s}
+                className={`stamp-tab ${status === s ? "active" : ""}`}
+                onClick={() => setStatus(s)}
+              >
+                {s}
+              </button>
             ))}
           </div>
         </div>
@@ -1698,13 +2255,19 @@ function Dashboard() {
           <span className="filter-label">Sort</span>
           <div className="filter-tabs sort-tabs">
             {SORTS.map(s => (
-              <button key={s} className={`stamp-tab small ${sort === s ? "active" : ""}`} onClick={() => setSort(s)}>{s}</button>
+              <button
+                key={s}
+                className={`stamp-tab small ${sort === s ? "active" : ""}`}
+                onClick={() => setSort(s)}
+              >
+                {s}
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PROJECT GRID */}
+      {/* ── PROJECT GRID ────────────────────────────────── */}
       <section className="projects">
         {sort === "Phase" ? (
           PHASES.map(ph => {
@@ -1715,8 +2278,14 @@ function Dashboard() {
                 <PhaseDivider phase={ph} count={list.length} />
                 <div className="project-grid">
                   {list.map(p => (
-                    <ProjectCard key={p.id} p={p} expanded={!!expanded[p.id]}
-                      onToggle={() => setExpanded(e => ({ ...e, [p.id]: !e[p.id] }))} />
+                    <ProjectCard
+                      key={p.id}
+                      p={p}
+                      expanded={!!expanded[p.id]}
+                      onToggle={() =>
+                        setExpanded(e => ({ ...e, [p.id]: !e[p.id] }))
+                      }
+                    />
                   ))}
                 </div>
               </div>
@@ -1725,8 +2294,14 @@ function Dashboard() {
         ) : (
           <div className="project-grid">
             {filtered.map(p => (
-              <ProjectCard key={p.id} p={p} expanded={!!expanded[p.id]}
-                onToggle={() => setExpanded(e => ({ ...e, [p.id]: !e[p.id] }))} />
+              <ProjectCard
+                key={p.id}
+                p={p}
+                expanded={!!expanded[p.id]}
+                onToggle={() =>
+                  setExpanded(e => ({ ...e, [p.id]: !e[p.id] }))
+                }
+              />
             ))}
           </div>
         )}
@@ -1739,9 +2314,12 @@ function Dashboard() {
         )}
       </section>
 
-      {/* CONTRACTOR ROLODEX */}
+      {/* ── CONTRACTOR ROLODEX ──────────────────────────── */}
       <section className="rolodex-section">
-        <button className="rolodex-toggle" onClick={() => setRolodexOpen(o => !o)}>
+        <button
+          className="rolodex-toggle"
+          onClick={() => setRolodexOpen(o => !o)}
+        >
           <span>Open Contractor Files</span>
           <span className="caret">{rolodexOpen ? "▴" : "▾"}</span>
         </button>
@@ -1749,9 +2327,11 @@ function Dashboard() {
           <div className="rolodex">
             {contractors.map(c => (
               <div key={c.name} className={`calling-card ${c.alert ? "alert" : ""}`}>
-                <div className="card-corner tl" /><div className="card-corner tr" />
-                <div className="card-corner bl" /><div className="card-corner br" />
-                <div className="card-eyebrow">&mdash; Calling Card &mdash;</div>
+                <div className="card-corner tl" />
+                <div className="card-corner tr" />
+                <div className="card-corner bl" />
+                <div className="card-corner br" />
+                <div className="card-eyebrow">— Calling Card —</div>
                 <div className="card-name">{c.name}</div>
                 <div className="card-spec">{c.specialty}</div>
                 <Ornament width={100} />
@@ -1768,16 +2348,18 @@ function Dashboard() {
         )}
       </section>
 
-      {/* COLOPHON */}
+      </React.Fragment>}
+
+      {/* ── COLOPHON ────────────────────────────────────── */}
       <footer className="colophon">
         <Ornament width={260} />
         <p>
-          Compiled with care for the residents of 3685 Pershing Avenue &middot;
-          A Spanish Revival bungalow in the North Park district of San Diego, California &middot;
+          Compiled with care for the residents of 3685 Pershing Avenue ·
+          A Spanish Revival bungalow in the North Park district of San Diego, California ·
           One hundred and two years young.
         </p>
         <div className="colophon-meta">
-          <span>3 BED &middot; 2 BATH &middot; 1,190 SQ FT &middot; 7,501 SQ FT LOT</span>
+          <span>3 BED · 2 BATH · 1,190 SQ FT · 7,501 SQ FT LOT</span>
         </div>
       </footer>
     </div>
@@ -1786,6 +2368,7 @@ function Dashboard() {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Dashboard />);
+
   </script>
 </body>
 </html>
